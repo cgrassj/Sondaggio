@@ -87,6 +87,7 @@ namespace Questionario.Web
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
 				db.Entry(risposta).State = EntityState.Modified;
+				risposta.dtAgg = DateTime.Now;
 				await db.SaveChangesAsync();
 				return Ok(risposta);
 			}
