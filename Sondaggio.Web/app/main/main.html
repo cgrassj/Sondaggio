@@ -1,0 +1,25 @@
+﻿<div style="margin-left: 10px; margin-top: -20px">
+	<div style="background: #d9534f; margin-left: -10px; color: #fff">
+		<div style="margin-left: 20px">
+			<div>&nbsp;</div>
+			<h1>{{Risposta.Domanda.Sondaggio.TitoloSondaggio}}</h1>
+			<h2>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h2>
+			<div>&nbsp;</div>
+		</div>
+	</div>
+<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
+	<h2 style="color: #000">{{Risposta.Utente.Cognome}} {{Risposta.Utente.Nome}}</h2>
+	<h3 style="color: #000">{{Risposta.Domanda.Sondaggio.NoteSondaggio}}</h3>
+	<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="max" read-only="isReadonly" on-hover="hoveringOver(value)"
+	      on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+	</div>
+
+	<form name="form" role="form">
+		<div class="form-group" style="margin-left: 10px; margin-right: 20px">
+			<textarea type="text" style="height: 200px" rows="5" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}" ng-model="Risposta.TestoRisposta"></textarea>
+			<div>&nbsp;</div>
+			<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+			<button type="button" class="btn btn-default" ng-click="close()">Annulla</button>
+		</div>
+	</form>
+</div>

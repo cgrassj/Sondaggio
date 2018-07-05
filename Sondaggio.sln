@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionario.Web", "Sondaggio.Web\Questionario.Web.csproj", "{59594FFB-9449-4813-8F76-42342CA0099F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionario.Db", "Sondaggio.Db\Questionario.Db.csproj", "{D83263A9-25BE-4812-9A4A-9619C138A7B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59594FFB-9449-4813-8F76-42342CA0099F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59594FFB-9449-4813-8F76-42342CA0099F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59594FFB-9449-4813-8F76-42342CA0099F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59594FFB-9449-4813-8F76-42342CA0099F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83263A9-25BE-4812-9A4A-9619C138A7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83263A9-25BE-4812-9A4A-9619C138A7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83263A9-25BE-4812-9A4A-9619C138A7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83263A9-25BE-4812-9A4A-9619C138A7B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E5EF21B-5B7C-4A1B-A74D-CF627D8A5DD2}
+	EndGlobalSection
+EndGlobal
