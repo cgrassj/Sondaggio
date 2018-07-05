@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/config
+/.vs/Sondaggio/v15
+/Sondaggio.Db/obj/Debug
+/Sondaggio.Web
+/packages
+/Sondaggio.Db/bin/Debug

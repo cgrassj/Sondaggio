@@ -835,7 +835,6 @@
     <Compile Include="ControllerOdata\RisposteController.cs" />
     <Compile Include="ControllerOdata\SondaggiController.cs" />
     <Compile Include="ControllerOdata\UtentiController.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -843,6 +842,9 @@
       <Project>{D83263A9-25BE-4812-9A4A-9619C138A7B2}</Project>
       <Name>Questionario.Db</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
