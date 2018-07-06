@@ -60,7 +60,7 @@ namespace Questionario.Web
 				return Ok();
 			}
 		}
-
+		[Route("api/risposte/{id:int}")]
 		public async Task<IHttpActionResult> Put(int id, Sondaggio sondaggio)
 		{
 			if (id != sondaggio.IdSondaggio)
@@ -71,7 +71,19 @@ namespace Questionario.Web
 				await db.SaveChangesAsync();
 				return Ok(sondaggio);
 			}
+		}[Route("api/risposte/{id:int}")]
+		[HttpPatch]
+		public async Task<IHttpActionResult> Patch(int id, Sondaggio sondaggio)
+		{
+			if (id != sondaggio.IdSondaggio)
+				return BadRequest();
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+			{
+				db.Entry(sondaggio).State = EntityState.Modified;
+				sondaggio.dtAgg = DateTime.Now;
+				await db.SaveChangesAsync();
+				return Ok(sondaggio);
+			}
 		}
-
 	}
 }
