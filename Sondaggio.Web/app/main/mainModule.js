@@ -81,7 +81,7 @@
 				save: function (cmp) {
 					var req = {
 						method: 'PATCH',
-						url: '/api/sondaggi/' + cmp.IdRisposta,
+						url: '/api/sondaggi/' + cmp.IdSondaggio,
 						headers: {
 							'Content-Type': 'application/json'
 						},
