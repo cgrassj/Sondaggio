@@ -71,7 +71,7 @@ namespace Questionario.Web
 				await db.SaveChangesAsync();
 				return Ok(sondaggio);
 			}
-		}[Route("api/risposte/{id:int}")]
+		}[Route("api/sondaggi/{id:int}")]
 		[HttpPatch]
 		public async Task<IHttpActionResult> Patch(int id, Sondaggio sondaggio)
 		{
