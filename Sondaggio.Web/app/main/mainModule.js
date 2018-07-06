@@ -11,9 +11,14 @@
 						controller: 'detailCtrl'
 					}).state('errore',
 					{
-						url: '/pageNotFound',
+						url: '/errore',
 						templateUrl: 'app/main/error.html'
-					});
+					}).state('notFound',
+							{
+								url: '/pageNotFound',
+								templateUrl: 'app/main/error404.html'
+							})
+					;
 			})
 		.factory('risposteService', function ($http) {
 			return {
