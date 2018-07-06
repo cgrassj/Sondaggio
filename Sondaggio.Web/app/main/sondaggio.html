@@ -1,0 +1,23 @@
+﻿<div style="margin-left: 10px; margin-top: -20px">
+	<form name="form" role="form">
+		<div class="form-group" style="margin-left: 10px; margin-right: 20px">
+
+			<div style="background: #d9534f; margin-left: -10px; color: #fff">
+				<div style="margin-left: 20px">
+					<div>&nbsp;</div>
+					<textarea type="text" style="height: 50px" rows="1" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="TitoloSondaggio" ng-model="Sondaggio.TitoloSondaggio"></textarea>
+					<textarea type="text" style="height: 50px" rows="1" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="SottoTitoloSondaggio" ng-model="Sondaggio.SottoTitoloSondaggio"></textarea>
+					<textarea type="text" style="height: 50px" rows="1" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="DescrizioneSondaggio" ng-model="Sondaggio.DescrizioneSondaggio"></textarea>
+					<div>&nbsp;</div>
+				</div>
+			</div>
+			<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
+				<textarea type="text" style="height: 50px" rows="1" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="NoteSondaggio" ng-model="Sondaggio.NoteSondaggio"></textarea>
+			</div>
+			<div>&nbsp;</div>
+			<textarea type="text" style="height: 50px" rows="1" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="UrlSondaggio" ng-model="Sondaggio.UrlSondaggio"></textarea>
+				<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+			<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="close()">Annulla</button>
+			</div>
+	</form>
+</div>
