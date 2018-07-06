@@ -1,8 +1,8 @@
 ﻿(function (window, angular) {
 	'use-strict';
 	angular.module('mainModule', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
-		.config([
-			'$stateProvider', function ($stateProvider) {
+		.config(function ($stateProvider, $urlRouterProvider) {
+			$urlRouterProvider.otherwise('/pageNotFound');
 				$stateProvider
 					.state('dettagliRisposta',
 					{
@@ -11,12 +11,15 @@
 						controller: 'detailCtrl'
 					}).state('errore',
 					{
-						url: '/pageNotFound',
-						templateUrl: 'app/main/error.html',
-						controller: 'errorCtrl'
-					});
-			}
-		])
+						url: '/errore',
+						templateUrl: 'app/main/error.html'
+					}).state('notFound',
+							{
+								url: '/pageNotFound',
+								templateUrl: 'app/main/error404.html'
+							})
+					;
+			})
 		.factory('risposteService', function ($http) {
 			return {
 				list: function () {
@@ -77,10 +80,9 @@
 
 			risposteService.detail($stateParams.id).then(function (result)
 			{
-				if (result.data === '')
-					$state.go("error");
-				else
 					$scope.Risposta = result.data;
+			}).catch(function() {
+				$state.go("errore");
 			});
 	}
 	);
