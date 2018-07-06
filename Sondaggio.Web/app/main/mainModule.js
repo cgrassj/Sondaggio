@@ -9,6 +9,11 @@
 						url: '/dettagliRisposta/:id',
 						templateUrl: 'app/main/main.html',
 						controller: 'detailCtrl'
+					}).state('errore',
+					{
+						url: '/pageNotFound',
+						templateUrl: 'app/main/error.html',
+						controller: 'errorCtrl'
 					});
 			}
 		])
@@ -67,7 +72,16 @@
 	           { stateOff: 'glyphicon-off' }
 	     ];
 
-	      risposteService.detail($stateParams.id).then(function (result) { $scope.Risposta = result.data; });
+	     			if ($stateParams.id === '')
+					$state.go("error");
+
+			risposteService.detail($stateParams.id).then(function (result)
+			{
+				if (result.data === '')
+					$state.go("error");
+				else
+					$scope.Risposta = result.data;
+			});
 	}
 	);
 
