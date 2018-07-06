@@ -12,24 +12,23 @@
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<!-- You can use Open Graph tags to customize link previews.
 	Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-	<meta property="og:url"                content="http://www.cgil.lombardia.it//index.htm" />
+	<meta property="og:url"                content="http://www.cgil.lombardia.it" />
 	<meta property="og:type"               content="article" />
-	<meta property="og:title"              content="CGIL LOMBARDIA" />
+	<meta property="og:title"              content="CGIL" />
 	<meta property="og:description"        content="Vuoi condividerlo su facebook?" />
-	<meta property="og:image"              content="http://www.cgil.lombardia.it/wp-content/uploads/2016/02/logo.png" />
+	<meta property="og:image"              content="http%3A%2F%2Fwww.sintel.net%2Fwp-content%2Fuploads%2F2018%2F06%2FSito_Sintel_homepage.jpg" />
 </head>
 
 
 <body ng-app="app">
-<!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v2.12";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.0';
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div ui-view></div>
 </body>
 
