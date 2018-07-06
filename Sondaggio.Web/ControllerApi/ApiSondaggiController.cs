@@ -60,7 +60,7 @@ namespace Questionario.Web
 				return Ok();
 			}
 		}
-		[Route("api/risposte/{id:int}")]
+
 		public async Task<IHttpActionResult> Put(int id, Sondaggio sondaggio)
 		{
 			if (id != sondaggio.IdSondaggio)
