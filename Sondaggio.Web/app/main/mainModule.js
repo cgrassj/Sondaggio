@@ -94,16 +94,38 @@
 
 		.controller('detailCtrl', function ($scope, $state, $stateParams, risposteService) {
 
-
       $scope.save = function () {
         risposteService.save($scope.Risposta).then(function (data) {
-          load(data.Id);
+           
+          window.alert("Grazie per aver risposto.");
+          
+          
+
+          risposteService.detail($scope.Risposta.IdRisposta).then(function (result) {
+            $scope.Risposta = result.data;
+            original = angular.copy(result.data);
+            $scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+
+          }).catch(function () {
+            $state.go("errore");
+          });
         });
+       
+
+        //risposteService.save($scope.Risposta).then(function (data) {
+        //  load(data.Id);
+        //});
       };
+
+      //ripristina lo stato del caricamento precedente
+      $scope.annulla = function () {
+        $scope.Risposta = angular.copy(original);
+      }
 
       $scope.rate = 0;
       $scope.max = 5;
       $scope.isReadonly = false;
+      $scope.rispostaDtAgg = null;
 
       $scope.hoveringOver = function (value) { $scope.overStar = value; };
 
@@ -113,12 +135,22 @@
 	           { stateOff: 'glyphicon-off' }
 	     ];
 
-	     			if ($stateParams.id === '')
-					$state.go("error");
+      //$scope.$on('$locationChangeStart', function (event) {
+      //  var answer = confirm("Are you sure you want to leave this page?")
+      //  if (!answer) {
+      //    event.preventDefault();
+      //  }
+      //});
+
+	    if ($stateParams.id === '')
+			  $state.go("error");
 
 			risposteService.detail($stateParams.id).then(function (result)
 			{
-					$scope.Risposta = result.data;
+        $scope.Risposta = result.data;
+        original = angular.copy(result.data);
+        $scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+        
 			}).catch(function() {
 				$state.go("errore");
 				});
@@ -134,6 +166,8 @@
 					});
 				};
 
+      
+        
 				$scope.isReadonly = false;
 
 				sondaggiService.detail($stateParams.id).then(function (result) {
