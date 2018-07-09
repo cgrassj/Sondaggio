@@ -70,7 +70,8 @@
 					var req = {
 						method: 'DELETE',
 						url: '/api/sondaggi/' + cmp.IdSondaggio,
-						headers: { 'Content-Type': 'application/json'
+						headers: {
+							'Content-Type': 'application/json'
 						}
 					};
 					return $http(req);
@@ -101,15 +102,12 @@
 			}
 		})
 
-
 		.controller('detailCtrl', function ($scope, $state, $stateParams, risposteService) {
 
 			$scope.save = function () {
 				risposteService.save($scope.Risposta).then(function (data) {
 
 					window.alert("Grazie per aver risposto.");
-
-
 
 					risposteService.detail($scope.Risposta.IdRisposta).then(function (result) {
 						$scope.Risposta = result.data;
@@ -120,14 +118,8 @@
 						$state.go("errore");
 					});
 				});
-
-
-				//risposteService.save($scope.Risposta).then(function (data) {
-				//  load(data.Id);
-				//});
 			};
 
-			//ripristina lo stato del caricamento precedente
 			$scope.annulla = function () {
 				$scope.Risposta = angular.copy(original);
 			}
@@ -145,13 +137,6 @@
 					{ stateOff: 'glyphicon-off' }
 				];
 
-			//$scope.$on('$locationChangeStart', function (event) {
-			//  var answer = confirm("Are you sure you want to leave this page?")
-			//  if (!answer) {
-			//    event.preventDefault();
-			//  }
-			//});
-
 			if ($stateParams.id === '')
 				$state.go("error");
 
@@ -159,8 +144,6 @@
 				$scope.Risposta = result.data;
 				original = angular.copy(result.data);
 				$scope.rispostaDtAgg = $scope.Risposta.dtAgg;
-
-
 			}).catch(function () {
 				$state.go("errore");
 			});
@@ -169,25 +152,22 @@
 
 		.controller('sondaggiCtrl', function ($scope, $state, $stateParams, sondaggiService) {
 
-
 			$scope.save = function () {
 				sondaggiService.save($scope.Sondaggio).then(function (result) {
 					load(result.data.IdSondaggio);
 				});
 			};
 
-				$scope.create = function () {
-					sondaggiService.create({}).then(function (result) {
-						load(result.data.IdSondaggio);
-					});
-				
+			$scope.create = function () {
+				sondaggiService.create({}).then(function (result) {
+					load(result.data.IdSondaggio);
+				});
 			};
 
-				$scope.delete = function () {
-					sondaggiService.delete($scope.Sondaggio).then(function () {
-					});
+			$scope.delete = function () {
+				sondaggiService.delete($scope.Sondaggio).then(function () {
+				});
 			};
-
 
 			$scope.isReadonly = false;
 
@@ -202,7 +182,5 @@
 			}).catch(function () {
 				$state.go("errore");
 			});
-		}
-		);
-
+		});
 })(window, window.angular);

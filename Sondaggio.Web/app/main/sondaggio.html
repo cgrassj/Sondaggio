@@ -30,34 +30,18 @@
 			<hr>
 			<table class="table table-striped">
 				<thead>
-					<tr><th>
-	
-</th>
-						<th>
-							TitoloSondaggio
-						</th>
-						<th>
-							SottoTitoloSondaggio
-						</th>
-						<th>
-							DescrizioneSondaggio
-						</th>
+					<tr><th></th>
+						<th>TitoloSondaggio</th>
+						<th>SottoTitoloSondaggio</th>
+						<th>DescrizioneSondaggio</th>
 					</tr>
 				</thead>
 				<tbody>
-				<tr ng-repeat="s in ListaSondaggi" ng-click="detail(Sondaggio.IdSondaggio)">
-					<td>
-						<button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;
-					</td>
-					<td>
-						{{Sondaggio.TitoloSondaggio}}
-					</td>
-					<td>
-						{{Sondaggio.SottoTitoloSondaggio}}
-					</td>
-					<td>
-						{{Sondaggio.DescrizioneSondaggio}}
-					</td>
+				<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)">
+					<td><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;</td>
+					<td><a href="/#!/sondaggio/{{s.IdSondaggio}}">{{Sondaggio.TitoloSondaggio}}</a></td>
+					<td>{{Sondaggio.SottoTitoloSondaggio}}</td>
+					<td>{{Sondaggio.DescrizioneSondaggio}}</td>
 				</tr>
 				</tbody>
 			</table>
