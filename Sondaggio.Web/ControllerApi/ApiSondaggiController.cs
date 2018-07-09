@@ -73,6 +73,7 @@ namespace Questionario.Web
 				return Ok(sondaggio);
 			}
 		}
+
 		[Route("api/sondaggi/{id:int}")]
 		[HttpPatch]
 		public async Task<IHttpActionResult> Patch(int id, Sondaggio sondaggio)

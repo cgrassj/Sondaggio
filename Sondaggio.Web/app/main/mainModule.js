@@ -1,30 +1,30 @@
-﻿(function (window, angular) {
+(function (window, angular) {
 	'use-strict';
 	angular.module('mainModule', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 		.config(function ($stateProvider, $urlRouterProvider) {
 			$urlRouterProvider.otherwise('/pageNotFound');
-				$stateProvider
-					.state('dettagliRisposta',
+			$stateProvider
+				.state('dettagliRisposta',
 					{
 						url: '/dettagliRisposta/:id',
 						templateUrl: 'app/main/main.html',
 						controller: 'detailCtrl'
 					}).state('errore',
-					{
-						url: '/errore',
-						templateUrl: 'app/main/error.html'
-					}).state('notFound',
+						{
+							url: '/errore',
+							templateUrl: 'app/main/error.html'
+						}).state('notFound',
 							{
 								url: '/pageNotFound',
 								templateUrl: 'app/main/error404.html'
-					}).state('sondaggio',
-							{
-								url: '/sondaggio/:id',
-								templateUrl: 'app/main/sondaggio.html',
-								controller: 'sondaggiCtrl'
-							})
-					;
-			})
+							}).state('sondaggio',
+								{
+									url: '/sondaggio/:id',
+									templateUrl: 'app/main/sondaggio.html',
+									controller: 'sondaggiCtrl'
+								})
+				;
+		})
 		.factory('risposteService', function ($http) {
 			return {
 				list: function () {
@@ -92,56 +92,89 @@
 			}
 		})
 
+
 		.controller('detailCtrl', function ($scope, $state, $stateParams, risposteService) {
 
+			$scope.save = function () {
+				risposteService.save($scope.Risposta).then(function (data) {
 
-      $scope.save = function () {
-        risposteService.save($scope.Risposta).then(function (data) {
-          load(data.Id);
-        });
-      };
+					window.alert("Grazie per aver risposto.");
 
-      $scope.rate = 0;
-      $scope.max = 5;
-      $scope.isReadonly = false;
 
-      $scope.hoveringOver = function (value) { $scope.overStar = value; };
 
-	     $scope.ratingStates =
-	     [
-	           { stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty' },
-	           { stateOff: 'glyphicon-off' }
-	     ];
+					risposteService.detail($scope.Risposta.IdRisposta).then(function (result) {
+						$scope.Risposta = result.data;
+						original = angular.copy(result.data);
+						$scope.rispostaDtAgg = $scope.Risposta.dtAgg;
 
-	     			if ($stateParams.id === '')
-					$state.go("error");
-
-			risposteService.detail($stateParams.id).then(function (result)
-			{
-					$scope.Risposta = result.data;
-			}).catch(function() {
-				$state.go("errore");
+					}).catch(function () {
+						$state.go("errore");
+					});
 				});
-	}
-	)
+
+
+				//risposteService.save($scope.Risposta).then(function (data) {
+				//  load(data.Id);
+				//});
+			};
+
+			//ripristina lo stato del caricamento precedente
+			$scope.annulla = function () {
+				$scope.Risposta = angular.copy(original);
+			}
+
+			$scope.rate = 0;
+			$scope.max = 5;
+			$scope.isReadonly = false;
+			$scope.rispostaDtAgg = null;
+
+			$scope.hoveringOver = function (value) { $scope.overStar = value; };
+
+			$scope.ratingStates =
+				[
+					{ stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty' },
+					{ stateOff: 'glyphicon-off' }
+				];
+
+			//$scope.$on('$locationChangeStart', function (event) {
+			//  var answer = confirm("Are you sure you want to leave this page?")
+			//  if (!answer) {
+			//    event.preventDefault();
+			//  }
+			//});
+
+			if ($stateParams.id === '')
+				$state.go("error");
+
+			risposteService.detail($stateParams.id).then(function (result) {
+				$scope.Risposta = result.data;
+				original = angular.copy(result.data);
+				$scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+
+
+			}).catch(function () {
+				$state.go("errore");
+			});
+		}
+		)
 
 		.controller('sondaggiCtrl', function ($scope, $state, $stateParams, sondaggiService) {
 
 
-				$scope.save = function () {
-					sondaggiService.save($scope.Sondaggio).then(function (data) {
-						load(data.Id);
-					});
-				};
-
-				$scope.isReadonly = false;
-
-				sondaggiService.detail($stateParams.id).then(function (result) {
-					$scope.Sondaggio = result.data;
-				}).catch(function () {
-					$state.go("errore");
+			$scope.save = function () {
+				sondaggiService.save($scope.Sondaggio).then(function (data) {
+					load(data.Id);
 				});
-			}
+			};
+
+			$scope.isReadonly = false;
+
+			sondaggiService.detail($stateParams.id).then(function (result) {
+				$scope.Sondaggio = result.data;
+			}).catch(function () {
+				$state.go("errore");
+			});
+		}
 		);
 
 })(window, window.angular);
