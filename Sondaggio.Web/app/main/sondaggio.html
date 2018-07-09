@@ -19,7 +19,14 @@
 	</div>
 
 	<footer id="footer" class="row">
-		<div class="col-xs-3" style="height: 30px;">
+
+		<div class="col-xs-7" style="height: 30px;">
+			<div><h1>Elenco sedi da recensire: </h1></div>
+			<div><button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="create()">Nuovo</button></div>
+			<hr>
+			<div ng-repeat="s in ListaSondaggi" style="height: 40px"><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete({{s}})">Elimina</button>&nbsp; &nbsp;<a href="/#!/sondaggio/{{s.IdSondaggio}}">{{s.TitoloSondaggio}} - {{s.SottoTitoloSondaggio}} - {{s.DescrizioneSondaggio}}</a></div>
+		</div>
+		<div class="col-xs-4" style="height: 30px;">
 			<form name="form" role="form">
 				<div class="form-group">
 					<div style="margin-left: 0px">
@@ -38,12 +45,6 @@
 					<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="close()">Annulla</button>
 				</div>
 			</form>
-		</div>
-		<div class="col-xs-9" style="height: 30px;">
-			<div><h1>Elenco sondaggi presenti: </h1></div>
-			<div><button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="create()">Nuovo</button></div>
-			<hr>
-			<div ng-repeat="s in ListaSondaggi" style="height: 40px"><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete({{s}})">Elimina</button>&nbsp; &nbsp;<a href="/#!/sondaggio/{{s.IdSondaggio}}">{{s.TitoloSondaggio}} - {{s.SottoTitoloSondaggio}} - {{s.DescrizioneSondaggio}}</a></div>
 		</div>
 	</footer>
 </div>
