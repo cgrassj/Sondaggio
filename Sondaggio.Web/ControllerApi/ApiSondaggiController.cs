@@ -88,6 +88,18 @@ namespace Questionario.Web
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
 				db.Entry(sondaggio).State = EntityState.Modified;
+				var domande = sondaggio.ListaServizi.Split('\n').ToList();
+
+				foreach (var domanda in domande)
+				{
+					if (sondaggio.Domande.All(a => a.TitoloDomanda != domanda))
+					{
+						var d = new Domanda {TitoloDomanda = domanda, IdSondaggio = sondaggio.IdSondaggio, Priorita = domande.IndexOf(domanda), dtAgg = DateTime.Now};
+						sondaggio.Domande.Add(d);
+						db.Entry(d).State = EntityState.Added;
+					}
+				}
+
 				sondaggio.dtAgg = DateTime.Now;
 				await db.SaveChangesAsync();
 				return Ok(sondaggio);
