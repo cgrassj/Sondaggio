@@ -18,10 +18,19 @@ namespace Questionario.Web
 
 		public ApiRisposteController(ContextFactory contextFactory) => _contextFactory = contextFactory;
 
+		[Route("api/risposte")]
 		public async Task<IHttpActionResult> Get()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-				return Ok(await db.Risposte.ToListAsync());
+			{
+				var risposte = db
+					.Risposte
+					.Include(e => e.Domanda)
+					.Include(e => e.Utente)
+					.Include(e => e.Domanda.Sondaggio);
+
+				return Ok(await risposte.ToListAsync());
+			}
 		}
 
 		[Route("api/risposte/{id}")]
