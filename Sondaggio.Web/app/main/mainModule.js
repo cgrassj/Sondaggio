@@ -17,6 +17,11 @@
 							{
 								url: '/pageNotFound',
 								templateUrl: 'app/main/error404.html'
+					}).state('sondaggio',
+							{
+								url: '/sondaggio/:id',
+								templateUrl: 'app/main/sondaggio.html',
+								controller: 'sondaggiCtrl'
 							})
 					;
 			})
@@ -53,8 +58,41 @@
 				}
 			}
 		})
+		.factory('sondaggiService', function ($http) {
+			return {
+				list: function () {
+					return $http.get("/api/sondaggi");
+				},
+				detail: function (id) {
+					return $http.get("/api/sondaggi/" + id);
+				},
+				create: function (cmp) {
+					var req = {
+						method: 'POST',
+						url: '/api/sondaggi',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						data: cmp
+					};
 
-    .controller('detailCtrl', function ($scope, $state, $stateParams, risposteService) {
+					return $http(req);
+				},
+				save: function (cmp) {
+					var req = {
+						method: 'PATCH',
+						url: '/api/sondaggi/' + cmp.IdSondaggio,
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						data: cmp
+					};
+					return $http(req);
+				}
+			}
+		})
+
+		.controller('detailCtrl', function ($scope, $state, $stateParams, risposteService) {
 
 
       $scope.save = function () {
@@ -83,8 +121,27 @@
 					$scope.Risposta = result.data;
 			}).catch(function() {
 				$state.go("errore");
-			});
+				});
 	}
-	);
+	)
+
+		.controller('sondaggiCtrl', function ($scope, $state, $stateParams, sondaggiService) {
+
+
+				$scope.save = function () {
+					sondaggiService.save($scope.Sondaggio).then(function (data) {
+						load(data.Id);
+					});
+				};
+
+				$scope.isReadonly = false;
+
+				sondaggiService.detail($stateParams.id).then(function (result) {
+					$scope.Sondaggio = result.data;
+				}).catch(function () {
+					$state.go("errore");
+				});
+			}
+		);
 
 })(window, window.angular);
