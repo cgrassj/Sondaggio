@@ -30,7 +30,9 @@ namespace Questionario.Web
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
-				var sondaggio = await db.Sondaggi.FirstOrDefaultAsync(e => e.IdSondaggio == id);
+				var sondaggio = await db.Sondaggi.Include(e => e.Domande).FirstOrDefaultAsync(e => e.IdSondaggio == id);
+				if(sondaggio != null && sondaggio.Domande != null && sondaggio.Domande.Count > 0)
+					sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
 				if (sondaggio == null)
 					return NotFound();
 				return Ok(sondaggio);
@@ -48,6 +50,7 @@ namespace Questionario.Web
 			}
 		}
 		[Route("api/sondaggi/{id}")]
+		[HttpDelete]
 		public async Task<IHttpActionResult> Delete(int id)
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())

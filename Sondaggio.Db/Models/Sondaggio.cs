@@ -15,6 +15,8 @@ namespace Questionario.Db.Models
 		public string DescrizioneSondaggio { get; set; }
 		public string NoteSondaggio { get; set; }
 		public string UrlSondaggio { get; set; }
+		[NotMapped]
+		public string ListaServizi { get; set; }
 		public bool SondaggioAttivo { get; set; }
 		public DateTime? DataScadenzaSondaggio { get; set; }
 		public DateTime? dtAgg { get; set; }

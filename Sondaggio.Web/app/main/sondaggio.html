@@ -17,7 +17,7 @@
 			<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="3" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
 						on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
 			<div style="margin-right: 20px">
-				<textarea type="text" style="height: 200px;" rows="5" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
+				<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
 			</div>
 		</div>
 	</div>
@@ -34,16 +34,18 @@
 			<form name="form" role="form">
 				<div class="form-group">
 					<div style="margin-left: 0px">
-						<h3>Titolo Sondaggio</h3>
-						<input type="text" class="form-control" id="TitoloSondaggio" name="TitoloSondaggio" placeholder="TitoloSondaggio" ng-model="Sondaggio.TitoloSondaggio">
-						<h3>SottoTitolo Sondaggio</h3>
-						<input type="text" class="form-control" id="SottoTitoloSondaggio" name="SottoTitoloSondaggio" placeholder="SottoTitoloSondaggio" ng-model="Sondaggio.SottoTitoloSondaggio">
-						<h3>Descrizione Sondaggio</h3>
-						<input type="text" class="form-control" id="DescrizioneSondaggio" name="DescrizioneSondaggio" placeholder="DescrizioneSondaggio" ng-model="Sondaggio.DescrizioneSondaggio">
+						<h3>Titolo</h3>
+						<input type="text" class="form-control" id="Titolo" name="Titolo" placeholder="Titolo" ng-model="Sondaggio.TitoloSondaggio">
+						<h3>Sottotitolo</h3>
+						<input type="text" class="form-control" id="SottoTitolo" name="SottoTitolo" placeholder="Sotto" ng-model="Sondaggio.SottoTitoloSondaggio">
+						<h3>Descrizione</h3>
+						<input type="text" class="form-control" id="Descrizione" name="Descrizione" placeholder="Descrizione" ng-model="Sondaggio.DescrizioneSondaggio">
 						<div>&nbsp;</div>
-						<input type="text" class="form-control" id="NoteSondaggio" name="NoteSondaggio" placeholder="NoteSondaggio" ng-model="Sondaggio.NoteSondaggio">
+						<input type="text" class="form-control" id="Note" name="Note" placeholder="Note" ng-model="Sondaggio.NoteSondaggio">
 						<div>&nbsp;</div>
-						<input type="text" class="form-control" id="UrlSondaggio" name="UrlSondaggio" placeholder="UrlSondaggio" ng-model="Sondaggio.UrlSondaggio">
+						<input type="text" class="form-control" id="Url" name="Url" placeholder="Url" ng-model="Sondaggio.UrlSondaggio">
+						<h3>Servizi</h3>
+					<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="Servizi" name="Servizi" placeholder="Servizi" ng-model="Sondaggio.ListaServizi"></textarea>
 					</div>
 					<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
 					<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="close()">Annulla</button>

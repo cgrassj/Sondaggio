@@ -69,7 +69,7 @@
 				delete: function (cmp) {
 					var req = {
 						method: 'DELETE',
-						url: '/api/sondaggi/' + cmp.id,
+						url: '/api/sondaggi/' + cmp.IdSondaggio,
 						headers: { 'Content-Type': 'application/json'
 						}
 					};
@@ -171,14 +171,16 @@
 
 
 			$scope.save = function () {
-				sondaggiService.save($scope.Sondaggio).then(function (data) {
-					load(data.Id);
+				sondaggiService.save($scope.Sondaggio).then(function (result) {
+					load(result.data.IdSondaggio);
 				});
 			};
 
 				$scope.create = function () {
-					sondaggiService.create().then(function () {
+					sondaggiService.create({}).then(function (result) {
+						load(result.data.IdSondaggio);
 					});
+				
 			};
 
 				$scope.delete = function () {
