@@ -70,7 +70,7 @@
 					var req = {
 						method: 'POST',
 						url: '/api/sondaggi',
-						headers: {
+						headers: {	
 							'Content-Type': 'application/json'
 						},
 						data: cmp

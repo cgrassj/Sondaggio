@@ -1,25 +1,25 @@
 <div style="margin-left: 10px; margin-top: 0px">
 	<div>ANTEPRIMA:</div>
 
-		<div style="background: #d9534f; margin-top: -20px; color: #fff">
-			<div style="margin-left: 20px">
-				<h1>{{Sondaggio.TitoloSondaggio}}</h1>
-				<h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
-				<div>&nbsp;</div>
-			</div>
+	<div style="background: #d9534f; margin-top: -20px; color: #fff">
+		<div style="margin-left: 20px">
+			<h1>{{Sondaggio.TitoloSondaggio}}</h1>
+			<h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
+			<div>&nbsp;</div>
 		</div>
-		<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
-			<h2 style="color: #000">Cognome e Nome di chi compila la recensione</h2>
-			<h3 style="color: #000">{{Sondaggio.NoteSondaggio}}</h3>
-			<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
-						on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
-			<div style="margin-right: 20px">
-				<textarea type="text" style="height: 200px;" rows="5" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
-			</div>
+	</div>
+	<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
+		<h2 style="color: #000">Cognome e Nome di chi compila la recensione</h2>
+		<h3 style="color: #000">{{Sondaggio.NoteSondaggio}}</h3>
+		<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
+					on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+		<div style="margin-right: 20px">
+			<textarea type="text" style="height: 200px;" rows="5" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
 		</div>
-	
-	<footer id="footer">
-		<div id="footer-content" style="background-color: #f3e5f5; padding: 10px; position: absolute; bottom: 0px;">
+	</div>
+
+	<footer id="footer" class="row">
+		<div class="col-xs-3" style="height: 30px;">
 			<form name="form" role="form">
 				<div class="form-group">
 					<div style="margin-left: 0px">
@@ -34,10 +34,13 @@
 						<div>&nbsp;</div>
 						<input type="text" class="form-control" id="UrlSondaggio" name="UrlSondaggio" placeholder="UrlSondaggio" ng-model="Sondaggio.UrlSondaggio">
 					</div>
-						<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+					<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
 					<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="close()">Annulla</button>
 				</div>
 			</form>
+		</div>
+		<div class="col-xs-9" style="height: 30px;">
+
 		</div>
 	</footer>
 </div>
