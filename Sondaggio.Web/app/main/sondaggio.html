@@ -39,9 +39,9 @@
 				<tbody>
 				<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)">
 					<td><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;</td>
-					<td><a href="/#!/sondaggio/{{s.IdSondaggio}}">{{Sondaggio.TitoloSondaggio}}</a></td>
-					<td>{{Sondaggio.SottoTitoloSondaggio}}</td>
-					<td>{{Sondaggio.DescrizioneSondaggio}}</td>
+					<td><a href="/#!/sondaggio/{{s.IdSondaggio}}">{{s.TitoloSondaggio}}</a></td>
+					<td>{{s.SottoTitoloSondaggio}}</td>
+					<td>{{s.DescrizioneSondaggio}}</td>
 				</tr>
 				</tbody>
 			</table>
