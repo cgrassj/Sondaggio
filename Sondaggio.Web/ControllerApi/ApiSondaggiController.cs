@@ -12,13 +12,13 @@ using Questionario.Db.Models;
 
 namespace Questionario.Web
 {
-	[Route("api/sondaggi")]
+	
 	public class ApiSondaggiController : ApiController
 	{
 		private readonly ContextFactory _contextFactory;
 
 		public ApiSondaggiController(ContextFactory contextFactory) => _contextFactory = contextFactory;
-
+		[Route("api/sondaggi")]
 		public async Task<IHttpActionResult> Get()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
@@ -37,6 +37,7 @@ namespace Questionario.Web
 			}
 		}
 
+		[Route("api/sondaggi")]
 		public async Task<IHttpActionResult> Post(Sondaggio sondaggio)
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
@@ -46,7 +47,7 @@ namespace Questionario.Web
 				return Ok(sondaggio);
 			}
 		}
-
+		[Route("api/sondaggi/{id}")]
 		public async Task<IHttpActionResult> Delete(int id)
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
@@ -60,8 +61,9 @@ namespace Questionario.Web
 				return Ok();
 			}
 		}
-		
-		[HttpPatch]
+
+		[Route("api/sondaggi/")]
+		[HttpPut]
 		public async Task<IHttpActionResult> Put(int id, Sondaggio sondaggio)
 		{
 			if (id != sondaggio.IdSondaggio)

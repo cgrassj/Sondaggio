@@ -66,11 +66,20 @@
 				detail: function (id) {
 					return $http.get("/api/sondaggi/" + id);
 				},
+				delete: function (cmp) {
+					var req = {
+						method: 'DELETE',
+						url: '/api/sondaggi/' + cmp.id,
+						headers: { 'Content-Type': 'application/json'
+						}
+					};
+					return $http(req);
+				},
 				create: function (cmp) {
 					var req = {
 						method: 'POST',
 						url: '/api/sondaggi',
-						headers: {	
+						headers: {
 							'Content-Type': 'application/json'
 						},
 						data: cmp
@@ -167,10 +176,27 @@
 				});
 			};
 
+				$scope.create = function () {
+					sondaggiService.create().then(function () {
+					});
+			};
+
+				$scope.delete = function () {
+					sondaggiService.delete($scope.Sondaggio).then(function () {
+					});
+			};
+
+
 			$scope.isReadonly = false;
 
 			sondaggiService.detail($stateParams.id).then(function (result) {
 				$scope.Sondaggio = result.data;
+			}).catch(function () {
+				$state.go("errore");
+			});
+
+			sondaggiService.list().then(function (result) {
+				$scope.ListaSondaggi = result.data;
 			}).catch(function () {
 				$state.go("errore");
 			});
