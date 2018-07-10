@@ -144,7 +144,7 @@
 				];
 
 				if ($stateParams.id === '')
-					$state.go("error");
+					$state.go("errore");
 
 				risposteService.detail($stateParams.id).then(function(result) {
 					$scope.Risposta = result.data;

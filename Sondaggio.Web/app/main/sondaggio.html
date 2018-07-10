@@ -31,16 +31,16 @@
 			<table class="table table-striped">
 				<thead>
 					<tr><th></th>
-						<th>TitoloSondaggio</th>
-						<th>SottoTitoloSondaggio</th>
-						<th>DescrizioneSondaggio</th>
+						<th>Recensione</th>
+						<th>Sede</th>
+						<th>Indirizzo</th>
 					</tr>
 				</thead>
 				<tbody>
 				<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)">
 					<td><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;</td>
 					<td><a href="/#!/sondaggio/{{s.IdSondaggio}}">{{s.TitoloSondaggio}}</a></td>
-					<td>{{s.SottoTitoloSondaggio}}</td>
+					<td ><div ng-click="detail(s.IdSondaggio)">{{s.SottoTitoloSondaggio}}</div></td>
 					<td>{{s.DescrizioneSondaggio}}</td>
 				</tr>
 				</tbody>
@@ -52,11 +52,11 @@
 			<form name="form" role="form">
 				<div class="form-group">
 					<div style="margin-left: 0px">
-						<h3>Titolo</h3>
+						<h3>Recensione</h3>
 						<input type="text" class="form-control" id="Titolo" name="Titolo" placeholder="Titolo" ng-model="Sondaggio.TitoloSondaggio">
-						<h3>Sottotitolo</h3>
+						<h3>Sede</h3>
 						<input type="text" class="form-control" id="SottoTitolo" name="SottoTitolo" placeholder="Sotto" ng-model="Sondaggio.SottoTitoloSondaggio">
-						<h3>Descrizione</h3>
+						<h3>Indirizzo</h3>
 						<input type="text" class="form-control" id="Descrizione" name="Descrizione" placeholder="Descrizione" ng-model="Sondaggio.DescrizioneSondaggio">
 						<div>&nbsp;</div>
 						<input type="text" class="form-control" id="Note" name="Note" placeholder="Note" ng-model="Sondaggio.NoteSondaggio">
