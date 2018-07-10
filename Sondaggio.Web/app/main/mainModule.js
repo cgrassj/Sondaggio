@@ -179,7 +179,13 @@
 				$scope.delete = function() {
 					sondaggiService.delete($scope.Sondaggio).then(function() {
 					});
-				};
+        };
+
+        $scope.detail = function (value) {
+          sondaggiService.detail(value).then(function (result) {
+            $scope.Sondaggio = result.data;
+          });
+        };
 
 				$scope.isReadonly = false;
 
