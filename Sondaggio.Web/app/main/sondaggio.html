@@ -4,17 +4,21 @@
 <div style="margin-top: 0px">
 
 	<div class="col-xs-11" style="margin-left: -50px;">
-		<div style="background: #d9534f; margin-top: -20px; color: #fff">
-			<div style="margin-left: 20px">
-				<h1>{{Sondaggio.TitoloSondaggio}}</h1>
-				<h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
-				<div>&nbsp;</div>
-			</div>
-		</div>
+    <div style="background: #d9534f; margin-top: -20px; color: #fff">
+      <div style="margin-left: 20px">
+        <h1>{{Sondaggio.TitoloSondaggio}}</h1>
+        <h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
+      </div>
+      <div style="margin-left: 20px" ng-show="!Sondaggio.TitoloSondaggio">
+        <h1><i>Titolo</i></h1>
+        <h2><i>Sotto Titolo </i></h2>
+      </div>
+      <div>&nbsp;</div>
+    </div>
 		<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
 			<h2 style="color: #000">Cognome e Nome di chi compila la recensione</h2>
 			<h3 style="color: #000">{{Sondaggio.NoteSondaggio}}</h3>
-			<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="3" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
+			<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
 						on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
 			<div style="margin-right: 20px">
 				<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
@@ -28,19 +32,19 @@
 			<div><h1>Elenco sedi da recensire: </h1></div>
 			<div><button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="create()">Nuovo</button></div>
 			<hr>
-			<table class="table table-striped">
+			<table class="table table-striped table-hover table-condensed">
 				<thead>
 					<tr><th></th>
-						<th>Recensione</th>
-						<th>Sede</th>
-						<th>Indirizzo</th>
+						<th>TitoloSondaggio</th>
+						<th>SottoTitoloSondaggio</th>
+						<th>DescrizioneSondaggio</th>
 					</tr>
 				</thead>
 				<tbody>
-				<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)">
+				<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)" role="button">
 					<td><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;</td>
-					<td><a href="/#!/sondaggio/{{s.IdSondaggio}}">{{s.TitoloSondaggio}}</a></td>
-					<td ><div ng-click="detail(s.IdSondaggio)">{{s.SottoTitoloSondaggio}}</div></td>
+					<td>{{s.TitoloSondaggio}}</td>
+					<td>{{s.SottoTitoloSondaggio}}</td>
 					<td>{{s.DescrizioneSondaggio}}</td>
 				</tr>
 				</tbody>
@@ -52,15 +56,15 @@
 			<form name="form" role="form">
 				<div class="form-group">
 					<div style="margin-left: 0px">
-						<h3>Recensione</h3>
+						<h3>Titolo</h3>
 						<input type="text" class="form-control" id="Titolo" name="Titolo" placeholder="Titolo" ng-model="Sondaggio.TitoloSondaggio">
-						<h3>Sede</h3>
+						<h3>Sottotitolo</h3>
 						<input type="text" class="form-control" id="SottoTitolo" name="SottoTitolo" placeholder="Sotto" ng-model="Sondaggio.SottoTitoloSondaggio">
-						<h3>Indirizzo</h3>
+						<h3>Descrizione</h3>
 						<input type="text" class="form-control" id="Descrizione" name="Descrizione" placeholder="Descrizione" ng-model="Sondaggio.DescrizioneSondaggio">
-						<div>&nbsp;</div>
+						<h3>Note</h3>
 						<input type="text" class="form-control" id="Note" name="Note" placeholder="Note" ng-model="Sondaggio.NoteSondaggio">
-						<div>&nbsp;</div>
+						<h3>Url Sondaggio</h3>
 						<input type="text" class="form-control" id="Url" name="Url" placeholder="Url" ng-model="Sondaggio.UrlSondaggio">
 						<h3>Servizi</h3>
 					<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="Servizi" name="Servizi" placeholder="Servizi" ng-model="Sondaggio.ListaServizi"></textarea>
