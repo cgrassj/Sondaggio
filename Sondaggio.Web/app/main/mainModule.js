@@ -187,6 +187,12 @@
           });
         };
 
+        load = function (value) {
+          sondaggiService.detail(value).then(function (result) {
+            $scope.Sondaggio = result.data;
+          });
+        };
+
 				$scope.isReadonly = false;
 
 				sondaggiService.detail($stateParams.id).then(function(result) {

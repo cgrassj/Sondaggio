@@ -4,13 +4,17 @@
 <div style="margin-top: 0px">
 
 	<div class="col-xs-11" style="margin-left: -50px;">
-		<div style="background: #d9534f; margin-top: -20px; color: #fff">
-			<div style="margin-left: 20px">
-				<h1>{{Sondaggio.TitoloSondaggio}}</h1>
-				<h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
-				<div>&nbsp;</div>
-			</div>
-		</div>
+    <div style="background: #d9534f; margin-top: -20px; color: #fff">
+      <div style="margin-left: 20px">
+        <h1>{{Sondaggio.TitoloSondaggio}}</h1>
+        <h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
+      </div>
+      <div style="margin-left: 20px" ng-show="!Sondaggio.TitoloSondaggio">
+        <h1><i>Titolo</i></h1>
+        <h2><i>Sotto Titolo </i></h2>
+      </div>
+      <div>&nbsp;</div>
+    </div>
 		<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
 			<h2 style="color: #000">Cognome e Nome di chi compila la recensione</h2>
 			<h3 style="color: #000">{{Sondaggio.NoteSondaggio}}</h3>
@@ -58,9 +62,9 @@
 						<input type="text" class="form-control" id="SottoTitolo" name="SottoTitolo" placeholder="Sotto" ng-model="Sondaggio.SottoTitoloSondaggio">
 						<h3>Descrizione</h3>
 						<input type="text" class="form-control" id="Descrizione" name="Descrizione" placeholder="Descrizione" ng-model="Sondaggio.DescrizioneSondaggio">
-						<div>&nbsp;</div>
+						<h3>Note</h3>
 						<input type="text" class="form-control" id="Note" name="Note" placeholder="Note" ng-model="Sondaggio.NoteSondaggio">
-						<div>&nbsp;</div>
+						<h3>Url Sondaggio</h3>
 						<input type="text" class="form-control" id="Url" name="Url" placeholder="Url" ng-model="Sondaggio.UrlSondaggio">
 						<h3>Servizi</h3>
 					<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="Servizi" name="Servizi" placeholder="Servizi" ng-model="Sondaggio.ListaServizi"></textarea>
