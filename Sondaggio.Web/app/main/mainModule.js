@@ -143,22 +143,25 @@
 					{ stateOff: 'glyphicon-off' }
 				];
 
-				if ($stateParams.id === '')
-					$state.go("errore");
+        if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {  
+          risposteService.list().then(function (result) {
+            $scope.ListaRisposte = result.data;
+          }).catch(function () {
+            $state.go("errore");
+          });
+        }
+        else {
 
-				risposteService.detail($stateParams.id).then(function(result) {
-					$scope.Risposta = result.data;
-					original = angular.copy(result.data);
-					$scope.rispostaDtAgg = $scope.Risposta.dtAgg;
-				}).catch(function() {
-					$state.go("errore");
-					});
-
-				risposteService.list().then(function (result) {
-					$scope.ListaRisposte = result.data;
-				}).catch(function () {
-					$state.go("errore");
-				});
+          risposteService.detail($stateParams.id).then(function (result) {
+            $scope.Risposta = result.data;
+            original = angular.copy(result.data);
+            $scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+          }).catch(function () {
+            $state.go("errore");
+          });
+          
+        }
+				
 			}
 		)
 		.controller('sondaggiCtrl',
@@ -180,8 +183,11 @@
 					sondaggiService.delete($scope.Sondaggio).then(function() {
 					});
         };
-
+        
+        
+        $scope.idSondaggioSelezionato = null;
         $scope.detail = function (value) {
+          $scope.idSondaggioSelezionato = value;
           sondaggiService.detail(value).then(function (result) {
             $scope.Sondaggio = result.data;
           });
@@ -195,16 +201,22 @@
 
 				$scope.isReadonly = false;
 
-				sondaggiService.detail($stateParams.id).then(function(result) {
-					$scope.Sondaggio = result.data;
-				}).catch(function() {
-					$state.go("errore");
-				});
+        if (typeof $stateParams.id === "undefined" || $stateParams.id ==="") {
+          sondaggiService.list().then(function (result) {
+            $scope.ListaSondaggi = result.data;
+          }).catch(function () {
+            $state.go("errore");
+          });
+        }
+        else {
+          sondaggiService.detail($stateParams.id).then(function (result) {
+            $scope.Sondaggio = result.data;
+          }).catch(function () {
+            $state.go("errore");
+          });
+        }
+				
 
-				sondaggiService.list().then(function(result) {
-					$scope.ListaSondaggi = result.data;
-				}).catch(function() {
-					$state.go("errore");
-				});
+			
 		});
 })(window, window.angular);
