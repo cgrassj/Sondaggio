@@ -479,6 +479,7 @@
     <Content Include="bower_components\jquery\external\sizzle\dist\sizzle.min.map" />
     <Content Include="bower_components\jquery\README.md" />
     <Content Include="bower_components\jquery\src\.eslintrc.json" />
+    <Content Include="Content\sincgil.png" />
     <Content Include="Content\site.css" />
     <Content Include="ControllerApi\bower.json" />
     <None Include="packages.config" />
