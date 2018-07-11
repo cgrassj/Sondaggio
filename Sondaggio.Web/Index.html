@@ -5,7 +5,10 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
-  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
   <script src="app/app.js"></script>
@@ -34,28 +37,35 @@
 	js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.0';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div class="col-xs-1">
-	
-	<div><a  href="#!/sondaggio">Sondaggi</a></div>
-	<div><a href="#!/risposte">Risposte</a></div>
+<!--MENU LATERALE-->
+<div class="col-xs-2">
+	<div>&nbsp;</div>
+	<div><a href="#!/sondaggio/" class="btn btn-light btn-primary btn-danger" role="button" aria-pressed="true">Sondaggi</a></div>
+	<div>&nbsp;</div>
+	<div><a href="#!/risposte" class="btn btn-light btn-primary btn-default" role="button" aria-pressed="true">Risposte </a></div>
+
+
 </div>
-<div class="col-xs-11" style="margin-left: -50px;">
+<div class="col-xs-10" style="margin-left: -50px;">
 <div ui-view></div>
 </div>	
-<nav class="navbar navbar-default navbar-fixed-bottom nav-xs hidden-xs hidden-print ng-scope">
 
-	<div style="background-color: #C30029;" class="container-fluid"><ul class="nav navbar-nav">
+<!--FOOTER-->
+<nav class="navbar navbar-default navbar-fixed-bottom nav-xs hidden-xs hidden-print ng-scope">
+	<div style="background-color: #C30029;" class="container-fluid">
+		<ul class="nav navbar-nav">
 			<li>
-				<a href="#" target="_blank">
-					<i class="fa fa-question-circle" aria-hidden="true"></i> <div style="color: white">Assistenza</div>
-				</a>
-			</li>
+				<a href="#" target="_blank"><i class="fa fa-question-circle" aria-hidden="true"></i>
+					<div style="color: white">Assistenza</div></a></li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right"><li ng-show="Versione" class="popupClients" style="">
+		<ul class="nav navbar-nav navbar-right">
+			<li ng-show="Versione" class="popupClients" style="">
 				<i class="fa fa-check"></i>2018.07.11
 			</li>
 			<li>
-				<p class="navbar-text ng-binding"><i class="fa fa-copyright"></i> <div style="color: white">SInTel 2015-18</div></p></li></ul></div>
+				<p class="navbar-text ng-binding"><i class="fa fa-copyright"></i>
+					<div style="color: white">SInTel 2015-18</div></p></li></ul>
+	</div>
 </nav>
 </body>
 </html>
