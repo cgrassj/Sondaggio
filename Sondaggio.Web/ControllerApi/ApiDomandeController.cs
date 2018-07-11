@@ -33,6 +33,13 @@ namespace Questionario.Web
 				var domanda = await db.Domande.FirstOrDefaultAsync(e => e.IdDomanda == id);
 				if (domanda == null)
 					return NotFound();
+
+				domanda.MediaStelle = domanda.Risposte.Average(a => a.StelleRisposta).ToString();
+				domanda.unaStella = domanda.Risposte.Count(a => a.StelleRisposta == 1).ToString();
+				domanda.dueStelle = domanda.Risposte.Count(a => a.StelleRisposta == 2).ToString();
+				domanda.treStelle = domanda.Risposte.Count(a => a.StelleRisposta == 3).ToString();
+				domanda.quattroStelle = domanda.Risposte.Count(a => a.StelleRisposta == 4).ToString();
+				domanda.cinqueStelle = domanda.Risposte.Count(a => a.StelleRisposta == 5).ToString();
 				return Ok(domanda);
 			}
 		}

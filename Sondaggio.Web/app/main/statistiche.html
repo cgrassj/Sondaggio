@@ -1,0 +1,34 @@
+<div class="panel panel-default ng-scope">
+	<div class="panel-heading"><strong>Valutazione</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
+		<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
+			<div class="col-xs-8">
+				<div class="col-lg-4 col-md-6 col-sm-8 col-xs-12" style="margin-left: 10px; ">
+					<div class="form-group">
+						<label>Rating</label>
+						
+						<table class="table table-striped table-hover table-condensed">
+							<thead>
+							<tr><th></th>
+								<th>Servizio</th>
+								<th>Valutazione media</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="Domanda in Domande">
+									<td>{{Servizio.TitoloDomanda}}</td>
+									<td>{{Domanda.MediaStelle}}</td>
+									<h1>MediaStelle {{Domanda.MediaStelle}}</h1>
+									<h1>* {{Domanda.unaStella}}</h1>
+									<h1>** {{Domanda.dueStelle}}</h1>
+									<h1>*** {{Domanda.treStelle}}</h1>
+									<h1>**** {{Domanda.quattroStelle}}</h1>
+									<h1>***** {{Domanda.cinqueStelle}}</h1>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

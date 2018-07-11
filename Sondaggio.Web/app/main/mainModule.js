@@ -27,7 +27,12 @@
 						url: '/risposte',
 						templateUrl: 'app/main/mail.html',
 						controller: 'detailCtrl'
-					});
+				}).state('statistiche',
+				  {
+						url: '/statistiche',
+						templateUrl: 'app/main/statistiche.html',
+					  controller: 'domandaCtrl'
+				  });;
 		})
 		.factory('risposteService',
 			function($http) {
@@ -106,8 +111,8 @@
 						return $http(req);
 					}
 				}
-			})
-		.controller('detailCtrl',
+		})
+	  .controller('detailCtrl',
 			function($scope, $state, $stateParams, risposteService) {
 
 				$scope.save = function() {
@@ -159,7 +164,6 @@
           }).catch(function () {
             $state.go("errore");
           });
-          
         }
 				
 			}
@@ -215,8 +219,5 @@
             $state.go("errore");
           });
         }
-				
-
-			
 		});
 })(window, window.angular);

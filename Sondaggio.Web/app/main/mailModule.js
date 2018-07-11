@@ -63,6 +63,11 @@
           $state.go("errore");
           });
 
+	      risposteService.detail($stateParams.id).then(function (result) {
+					$scope.Domanda = result.data;
+	      }).catch(function () {
+		      $state.go("errore");
+
         //da implementare lista utenti
         $scope.Utenti = null;
 

@@ -33,16 +33,6 @@ namespace Questionario.Web
 			}
 		}
 
-		[Route("api/valutazioneMedia")]
-		public async Task<IHttpActionResult> GetValutazioneMedia()
-		{
-			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-			{
-				var risposte = db.Risposte;
-				return Ok(risposte.Average(a=> a.StelleRisposta));
-			}
-		}
-
 		[Route("api/risposte/{id}")]
 		public async Task<IHttpActionResult> Get(int id)
 		{

@@ -18,5 +18,6 @@ namespace Questionario.Db.Models
 		public virtual Domanda Domanda { get; set; }
 		[ForeignKey("IdUtente")]
 		public virtual Utente Utente { get; set; }
+
 	}
 }
