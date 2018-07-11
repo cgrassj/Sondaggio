@@ -22,7 +22,20 @@ namespace Questionario.Web
 		public async Task<IHttpActionResult> Get()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-				return Ok(await db.Domande.ToListAsync());
+			{
+				var domande = db.Domande.Include(e => e.Sondaggio).Include(e => e.Risposte).ToList();
+
+				foreach (var domanda in domande)
+				{
+					domanda.MediaStelle = domanda.Risposte.Average(a => a.StelleRisposta).ToString();
+					domanda.unaStella = domanda.Risposte.Count(a => a.StelleRisposta == 1).ToString();
+					domanda.dueStelle = domanda.Risposte.Count(a => a.StelleRisposta == 2).ToString();
+					domanda.treStelle = domanda.Risposte.Count(a => a.StelleRisposta == 3).ToString();
+					domanda.quattroStelle = domanda.Risposte.Count(a => a.StelleRisposta == 4).ToString();
+					domanda.cinqueStelle = domanda.Risposte.Count(a => a.StelleRisposta == 5).ToString();
+				}
+				return Ok(domande);
+			}
 		}
 
 		[Route("api/domande/{id}")]
@@ -31,7 +44,7 @@ namespace Questionario.Web
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
 				var domanda = await db.Domande
-					.Include(e => e.Sondaggio)
+					.Include(e => e.Sondaggio).Include(e => e.Risposte)
 					.FirstOrDefaultAsync(e => e.IdDomanda == id);
 				if (domanda == null)
 					return NotFound();
