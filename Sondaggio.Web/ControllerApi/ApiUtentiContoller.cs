@@ -19,6 +19,7 @@ namespace Questionario.Web
 
 		public ApiUtentiController(ContextFactory contextFactory) => _contextFactory = contextFactory;
 
+		[Route("api/utenti/")]
 		public async Task<IHttpActionResult> Get()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
