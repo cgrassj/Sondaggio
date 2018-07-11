@@ -31,7 +31,7 @@
 				  {
 						url: '/statistiche',
 						templateUrl: 'app/main/statistiche.html',
-					  controller: 'domandaCtrl'
+					  controller: 'domandeCtrl'
 				  });;
 		})
 		.factory('risposteService',
