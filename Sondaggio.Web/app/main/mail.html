@@ -1,14 +1,29 @@
-<div style="margin-left: 10px; margin-top: -20px">
-	<div style="background: #d9534f; margin-left: -10px; color: #fff">
-		<div style="margin-left: 20px">
-			<div ng-repeat="s in ListaRisposte" style="height: 40px">
-				{{s.IdRisposta}}{{s.IdDomanda}} - {{s.IdUtente}}
-			</div>
-			
+<div >
+    <div style="background: #d9534f; padding: 10px; margin-bottom:10px; color: #fff">
+      <h3>Crea domanda e invia email</h3>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12" style="margin-left: 10px; ">
+      <div class="form-group">
+        <label for="sondaggio">Sondaggio</label>
+        <select class="form-control" id="sondaggio" name="sondaggio" ng-options="s.TitoloSondaggio for s in Sondaggi track by s.IdSondaggio" ng-model="selectedSondaggio" ng-required="true" ng-change"updatedomande()"></select>
 
+      </div>
+      <div class="form-group">
+        <label for="domanda">Domanda</label>
+        <select class="form-control" id="domanda" name="domanda" ng-options="d.TitoloDomanda for d in Domande track by d.IdDomanda" ng-model="selectedDomanda" ng-disabled="!sondaggio" ng-required="true"></select>
+      </div>
+      <div class="form-group">
+        <label for="utente">Utente</label>
+        <select class="form-control" id="utente" name="utente" ng-options="utente.IdUtente as utente.Cognome for utente in Utenti" ng-model="selectedOption" ng-required="true"></select>
+      </div>
 
-			<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
-			<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
-		</div>
-	</div>
-</div>
+      <div>
+        <!--combo sondaggio--> <!--combo domanda--> <!--combo utente-->
+        <!--sul salva genera la riga su db e manda mail con link con id Risposta generato -->
+
+        <button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+        <button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
+      </div>
+    </div>
+  </div>
+

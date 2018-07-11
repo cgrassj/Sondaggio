@@ -1,6 +1,6 @@
 (function (window, angular) {
 	'use-strict';
-	angular.module('mainModule', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
+  angular.module('mainModule', ['ui.router', 'mailModule', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 		.config(function($stateProvider, $urlRouterProvider) {
 			$urlRouterProvider.otherwise('/pageNotFound');
 			$stateProvider
