@@ -149,7 +149,6 @@
     <Content Include="app\main\error.html" />
     <Content Include="app\main\error404.html" />
     <Content Include="app\main\mail.html" />
-    <Content Include="app\main\mailModule.js" />
     <Content Include="app\main\sondaggio.html" />
     <Content Include="bower_components\angular-filter\.bower.json" />
     <Content Include="bower_components\angular-filter\.bowerrc" />
