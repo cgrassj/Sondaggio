@@ -57,18 +57,20 @@
           $state.go("errore");
         });
 
-       domandeService.list().then(function (result) {
-          $scope.Domande = result.data;
-        }).catch(function () {
-          $state.go("errore");
-          });
-
-	      risposteService.detail($stateParams.id).then(function (result) {
-					$scope.Domanda = result.data;
-	      }).catch(function () {
-		      $state.go("errore");
-	      });
-        //da implementare lista utenti
+	      if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
+		      domandeService.list().then(function(result) {
+			      $scope.ListaDomande = result.data;
+		      }).catch(function() {
+			      $state.go("errore");
+		      });
+	      } else {
+		      risposteService.detail($stateParams.id).then(function(result) {
+			      $scope.Domanda = result.data;
+		      }).catch(function() {
+			      $state.go("errore");
+		      });
+	      }
+	      //da implementare lista utenti
         $scope.Utenti = null;
 
         $scope.updatedomande = function () {

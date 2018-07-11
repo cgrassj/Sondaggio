@@ -30,7 +30,9 @@ namespace Questionario.Web
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
-				var domanda = await db.Domande.FirstOrDefaultAsync(e => e.IdDomanda == id);
+				var domanda = await db.Domande
+					.Include(e => e.Sondaggio)
+					.FirstOrDefaultAsync(e => e.IdDomanda == id);
 				if (domanda == null)
 					return NotFound();
 

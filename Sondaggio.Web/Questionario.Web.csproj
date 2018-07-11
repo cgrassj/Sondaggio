@@ -482,6 +482,7 @@
     <Content Include="bower_components\jquery\src\.eslintrc.json" />
     <Content Include="Content\sincgil.png" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\star.png" />
     <Content Include="ControllerApi\bower.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
