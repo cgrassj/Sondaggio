@@ -6,9 +6,9 @@
 				<table class="table table-striped table-hover table-condensed">
 					<thead>
 					<tr><th></th>
-						<th>TitoloSondaggio</th>
-						<th>SottoTitoloSondaggio</th>
-						<th>DescrizioneSondaggio</th>
+						<th>Tipologia recensione</th>
+						<th>Sede da recensire</th>
+						<th>Indirizzo sede</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -32,18 +32,18 @@
 				<form name="form" role="form">
 					<div class="form-group">
 						<div style="margin-left: 0px">
-							<h3 style="font-size: 15px; font-weight: bold ">Titolo</h3>
-							<input type="text" class="form-control" id="Titolo" name="Titolo" placeholder="Titolo" ng-model="Sondaggio.TitoloSondaggio">
+							<h3 style="font-size: 15px; font-weight: bold ">Tipologia recensione</h3>
+							<input type="text" class="form-control" id="Titolo" name="Titolo" placeholder="Tipologia recensione - es. Valuta e recensisci" ng-model="Sondaggio.TitoloSondaggio">
 							<h3 style="font-size: 15px; font-weight: bold ">Sottotitolo</h3>
-							<input type="text" class="form-control" id="SottoTitolo" name="SottoTitolo" placeholder="Sotto" ng-model="Sondaggio.SottoTitoloSondaggio">
+							<input type="text" class="form-control" id="SottoTitolo" name="SottoTitolo" placeholder="Sede da recensire - es. CGIL Lombardia" ng-model="Sondaggio.SottoTitoloSondaggio">
 							<h3 style="font-size: 15px; font-weight: bold ">Descrizione</h3>
-							<input type="text" class="form-control" id="Descrizione" name="Descrizione" placeholder="Descrizione" ng-model="Sondaggio.DescrizioneSondaggio">
+							<input type="text" class="form-control" id="Descrizione" name="Descrizione" placeholder="Indirizzo sede - es. Via Palmanova 24, Milano" ng-model="Sondaggio.DescrizioneSondaggio">
 							<h3  style="font-size: 15px; font-weight: bold ">Note</h3>
-							<input type="text" class="form-control" id="Note" name="Note" placeholder="Note" ng-model="Sondaggio.NoteSondaggio">
-							<h3  style="font-size: 15px; font-weight: bold ">Url Sondaggio</h3>
-							<input type="text" class="form-control" id="Url" name="Url" placeholder="Url" ng-model="Sondaggio.UrlSondaggio">
-							<h3  style="font-size: 15px; font-weight: bold ">Servizi</h3>
-							<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="Servizi" name="Servizi" placeholder="Servizi" ng-model="Sondaggio.ListaServizi"></textarea>
+							<input type="text" class="form-control" id="Note" name="Note" placeholder="Note recensione - es. La tua recensione sara' pubblicata sul Web e visibile a tutti. " ng-model="Sondaggio.NoteSondaggio">
+							<h3  style="font-size: 15px; font-weight: bold ">Url di condivisione</h3>
+							<input type="text" class="form-control" id="Url" name="Url" placeholder="Url per la condivisione - es. www.cgil.lombardia.it" ng-model="Sondaggio.UrlSondaggio">
+							<h3  style="font-size: 15px; font-weight: bold ">Descrizione ervizi</h3>
+							<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="Servizi" name="Servizi" placeholder="Descrizione servizi forniti dalla sede dei quali si vuole avere un riscontro - es. Condividi la tua esperienza sul servizio 730 effettuato nella nostra sede" ng-model="Sondaggio.ListaServizi"></textarea>
 						</div>
 						<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
 						<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="close()">Annulla</button>
