@@ -67,7 +67,7 @@
 					$scope.Domanda = result.data;
 	      }).catch(function () {
 		      $state.go("errore");
-
+	      });
         //da implementare lista utenti
         $scope.Utenti = null;
 
@@ -84,7 +84,5 @@
           });
         }
       });
-			
-		
 
 })(window, window.angular);
