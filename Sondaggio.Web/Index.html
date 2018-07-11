@@ -34,8 +34,14 @@
 	js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.0';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div ui-view></div>
+<div class="col-xs-1">
 	
+	<div><a  href="#!/sondaggio">Sondaggi</a></div>
+	<div><a href="#!/risposte">Risposte</a></div>
+</div>
+<div class="col-xs-11" style="margin-left: -50px;">
+<div ui-view></div>
+</div>	
 <nav class="navbar navbar-default navbar-fixed-bottom nav-xs hidden-xs hidden-print ng-scope">
 
 	<div style="background-color: #C30029;" class="container-fluid"><ul class="nav navbar-nav">
