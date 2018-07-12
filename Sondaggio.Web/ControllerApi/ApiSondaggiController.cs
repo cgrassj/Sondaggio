@@ -22,7 +22,7 @@ namespace Questionario.Web
 		public async Task<IHttpActionResult> Get()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-				return Ok(await db.Sondaggi.ToListAsync());
+				return Ok(await db.Sondaggi.Include(a => a.Domande).Include(e => e.Domande.Select(r => r.Risposte)).ToListAsync());
 		}
 
 		[Route("api/sondaggi/{id}")]
