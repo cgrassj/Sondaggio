@@ -1,0 +1,34 @@
+﻿<div style="background-color: #CB002B; height: 40px">
+	<div style="height: 10px">&nbsp;</div>&nbsp;&nbsp;<img src="Content/sincgil.png" />
+</div>
+<div style="height: 10px">&nbsp;</div>
+<body ng-app="app">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.0';
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div ui-view></div>
+
+<!--FOOTER-->
+<nav class="navbar navbar-default navbar-fixed-bottom nav-xs hidden-xs hidden-print ng-scope">
+	<div style="background-color: #C30029;" class="container-fluid">
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="#" target="_blank"><i class="fa fa-question-circle" aria-hidden="true"></i>
+					<div style="color: white">Assistenza</div></a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li ng-show="Versione" class="popupClients" style="">
+				<i class="fa fa-check"></i>2018.07.11
+			</li>
+			<li>
+				<p class="navbar-text ng-binding"><i class="fa fa-copyright"></i>
+					<div style="color: white">SInTel 2015-18</div></p></li></ul>
+	</div>
+</nav>
+</body>

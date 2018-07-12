@@ -10,12 +10,12 @@
 							<tbody>
 								<tr ng-repeat="Domanda in ListaDomande">
 									<td>
-										<p>CGIL Lombardia {{Domanda.Sondaggio.SottoTitoloSondaggio}}</p>
-										<p>Sede di Milano {{Domanda.Sondaggio.DescrizioneSondaggio}}</p>
-										<p>Via Palmanova, 24 Milano {{Domanda.Sondaggio.Note}}</p>
+										<p>{{Domanda.Sondaggio.SottoTitoloSondaggio}}</p>
+										<p>{{Domanda.Sondaggio.DescrizioneSondaggio}}</p>
+										<p>{{Domanda.Sondaggio.Note}}</p>
 										<p>{{Domanda.TitoloDomanda}}</p>
 										<p></p>
-										<p>Media Stelle ({{Domanda.MediaStelle}})</p>
+										<p><img src="/Content/{{Domanda.MediaStelleImmagine}}" />({{Domanda.MediaStelle}})</p>
 									</td>
 									<td><table>
 												<tr><td>5 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{Domanda.cinqueStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">{{Domanda.cinqueStellePercentuale}}%</div></td></tr>

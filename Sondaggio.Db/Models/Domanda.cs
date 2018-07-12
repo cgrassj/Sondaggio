@@ -32,6 +32,33 @@ namespace Questionario.Db.Models
 			}
 		}
 
+		[NotMapped]
+		public string MediaStelleImmagine
+		{
+			get
+			{
+				double media = 0;
+				if (Risposte?.Count > 0)
+					try { media = Risposte.Average(a => a.StelleRisposta); }
+					catch (OverflowException overflowException) { }
+
+				double ret = 0;
+				var d = (Math.Round(media, 1));
+				double t = d - Math.Floor(d);
+				if (t >= 0.3d && t <= 0.7d)
+					ret = Math.Floor(d) + 0.5d;
+				else if (t > 0.7d)
+					ret = Math.Ceiling(d);
+				else if (t < 0.3)
+					ret = Math.Floor(d);
+
+				var v = (ret * 10).ToString("##") + ".png";
+				if (v == ".png")
+					v = "0.png";
+				return v;
+			}
+		}
+
 		private int conta(int stelle)
 		{
 			int res = 0;
