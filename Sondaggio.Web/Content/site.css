@@ -11,4 +11,10 @@
 }
 .bgimg {
 	background-image: url('emptyBackground.png');
+    background-repeat:no-repeat;
+    width:200px;
+ 
+}
+.bgimg img {
+    vertical-align: top;
 }
