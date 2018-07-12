@@ -24,20 +24,40 @@ namespace Questionario.Web
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
 				var domande = db.Domande.Include(e => e.Sondaggio).Include(e => e.Risposte).ToList();
-
-				foreach (var domanda in domande)
+				try
 				{
-					domanda.MediaStelle = domanda.Risposte.Average(a => a.StelleRisposta).ToString();
-					domanda.unaStella = domanda.Risposte.Count(a => a.StelleRisposta == 1).ToString();
-					domanda.dueStelle = domanda.Risposte.Count(a => a.StelleRisposta == 2).ToString();
-					domanda.treStelle = domanda.Risposte.Count(a => a.StelleRisposta == 3).ToString();
-					domanda.quattroStelle = domanda.Risposte.Count(a => a.StelleRisposta == 4).ToString();
-					domanda.cinqueStelle = domanda.Risposte.Count(a => a.StelleRisposta == 5).ToString();
+					foreach (var domanda in domande)
+					{
+						domanda.MediaStelle = domanda.Risposte?.Average(a => a.StelleRisposta).ToString();
+						domanda.unaStella = domanda.Risposte?.Count(a => a.StelleRisposta == 1).ToString();
+						domanda.dueStelle = domanda.Risposte?.Count(a => a.StelleRisposta == 2).ToString();
+						domanda.treStelle = domanda.Risposte?.Count(a => a.StelleRisposta == 3).ToString();
+						domanda.quattroStelle = domanda.Risposte?.Count(a => a.StelleRisposta == 4).ToString();
+						domanda.cinqueStelle = domanda.Risposte?.Count(a => a.StelleRisposta == 5).ToString();
+					}
+					
+				}
+				catch (Exception ex) {
+
 				}
 				return Ok(domande);
+				
+				
 			}
 		}
 
+		[Route("api/updateDomande/{idSondaggio}")]
+		public async Task<IHttpActionResult> GetDomande(int idSondaggio)
+		{
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+			{
+				var domanda = await db.Domande
+					.FirstOrDefaultAsync(e => e.IdSondaggio== idSondaggio);
+				if (domanda == null)
+					return NotFound();
+				return Ok(domanda);
+			}
+		}
 		[Route("api/domande/{id}")]
 		public async Task<IHttpActionResult> Get(int id)
 		{
