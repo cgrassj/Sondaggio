@@ -1,8 +1,7 @@
 (function (window, angular) {
 	'use-strict';
   angular.module('mailModule', ['ui.router', 'mainModule', 'ui.bootstrap'])
-    .config(function ($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/pageNotFound');
+    .config(function ($stateProvider) {
       $stateProvider
         .state('mail',
           {

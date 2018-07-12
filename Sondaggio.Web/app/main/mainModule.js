@@ -4,12 +4,33 @@
 		.config(function($stateProvider, $urlRouterProvider) {
 			$urlRouterProvider.otherwise('/pageNotFound');
 			$stateProvider
-				.state('dettagliRisposta',
+				.state('public.dettagliRisposta',
 					{
 						url: '/dettagliRisposta/:id',
 						templateUrl: 'app/main/main.html',
 						controller: 'detailCtrl'
-					}).state('errore',
+				})
+				.state('private.dettagliRisposta',
+					{
+						url: '/dettagliRisposta/:id',
+						templateUrl: 'app/main/main.html',
+						controller: 'detailCtrl'
+					})
+				.state('private',
+					{
+						url: '/private',
+						templateUrl: 'app/main/private.html',
+						controller: function ($scope, $state) { $scope.state = $state; }
+				})
+				.state('public',
+					{
+						url: '/public',
+						templateUrl: 'app/main/public.html',
+						controller: function ($scope, $state) { $scope.state = $state; }
+
+					})
+
+				.state('errore',
 					{
 						url: '/errore',
 						templateUrl: 'app/main/error.html'
@@ -17,17 +38,17 @@
 					{
 						url: '/pageNotFound',
 						templateUrl: 'app/main/error404.html'
-					}).state('sondaggio',
+				}).state('private.sondaggio',
 					{
-						url: '/sondaggio/:id',
+						url: '/sondaggio/:id?',
 						templateUrl: 'app/main/sondaggio.html',
 						controller: 'sondaggiCtrl'
-					}).state('risposte',
+				}).state('private.risposte',
 					{
 						url: '/risposte',
 						templateUrl: 'app/main/mail.html',
             controller: 'domandeCtrl'
-				}).state('statistiche',
+				}).state('private.statistiche',
 				  {
 						url: '/statistiche',
 						templateUrl: 'app/main/statistiche.html',

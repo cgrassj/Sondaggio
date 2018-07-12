@@ -1,19 +1,17 @@
-﻿<div style="background-color: #CB002B; height: 40px">
-	<div style="height: 10px">&nbsp;</div>&nbsp;&nbsp;<img src="Content/sincgil.png" />
-</div>
-<div style="height: 10px">&nbsp;</div>
+﻿<div style="height: 10px">&nbsp;</div>
 <body ng-app="app">
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.0';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
-<div ui-view></div>
-
+<div class="col-md-2 col-lg-2">
+	<div>&nbsp;</div>
+	<div><a ui-sref="private.sondaggio({id:null})" class="btn btn-light btn-primary" role="button" aria-pressed="true" ng-class="{'btn-danger': state.includes('private.sondaggio')}">Sondaggi</a></div>
+	<div>&nbsp;</div>
+	<div><a ui-sref="private.risposte" class="btn btn-light btn-primary" role="button" aria-pressed="true" ng-class="{'btn-danger': state.includes('private.risposte')}">Risposte </a></div>
+	<div>&nbsp;</div>
+	<div><a ui-sref="private.statistiche" class="btn btn-light btn-primary" role="button" aria-pressed="true" ng-class="{'btn-danger': state.includes('private.statistiche')}">Statistiche </a></div>
+</div>
+<div class="col-md-10 col-lg-10" style="margin-left: 0px;">
+	<div ui-view></div>
+</div>	
 <!--FOOTER-->
 <nav class="navbar navbar-default navbar-fixed-bottom nav-xs hidden-xs hidden-print ng-scope">
 	<div style="background-color: #C30029;" class="container-fluid">
