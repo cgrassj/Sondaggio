@@ -5,30 +5,34 @@
 				<div class="col-lg-8 col-md-6 col-sm-8 col-xs-12" style="margin-left: 10px; ">
 					<div class="form-group">
 						<label>Rating</label>
-						
-						<table class="table table-striped table-hover table-condensed">
-							<tbody>
-								<tr ng-repeat="Domanda in ListaDomande">
-									<td>
-										<p>{{Domanda.Sondaggio.SottoTitoloSondaggio}}</p>
-										<p>{{Domanda.Sondaggio.DescrizioneSondaggio}}</p>
-										<p>{{Domanda.Sondaggio.Note}}</p>
-										<p>{{Domanda.TitoloDomanda}}</p>
-										<p></p>
-										<p><img src="/Content/{{Domanda.MediaStelleImmagine}}" />({{Domanda.MediaStelle}})</p>
-									</td>
-									<td><table>
-												<tr><td>5 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{Domanda.cinqueStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">{{Domanda.cinqueStellePercentuale}}%</div></td></tr>
-												<tr><td>4 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{Domanda.quattroStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">{{Domanda.quattroStellePercentuale}}%</div></td></tr>
-												<tr><td>3 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{Domanda.treStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">{{Domanda.treStellePercentuale}}%</div></td></tr>
-												<tr><td>2 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{Domanda.dueStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">{{Domanda.dueStellePercentuale}}%</div></td></tr>
-												<tr><td>1 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{Domanda.unaStellaPercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">{{Domanda.unaStellaPercentuale}}%</div></td></tr>
-											</table>
-                  </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+            <div class="div-organizzazione" ng-repeat="sondaggio in Sondaggi  "  >
+              <div><span>  {{sondaggio.TitoloSondaggio}} {{sondaggio.SottoTitoloSondaggio}}</span></div>
+              <div><span>  {{sondaggio.DescrizioneSondaggio}} {{sondaggio.Note}}</span></div>
+ 
+                <table class="table table-striped table-hover table-condensed">
+                  <tbody>
+                    <tr ng-repeat="domanda in sondaggio.Domande">
+                      <td style="width:55%">
+
+                        <p>{{domanda.TitoloDomanda}}</p>
+                        <p></p>
+                        <p><img src="/Content/{{domanda.MediaStelleImmagine}}" />&nbsp;({{domanda.MediaStelle}})</p>
+                      </td>
+                      <td style="width:45%">
+                        <table style="white-space: nowrap;">
+                          <tr><td>5 stelle&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{domanda.cinqueStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">&nbsp;{{domanda.cinqueStellePercentuale}}%</div></td></tr>
+                          <tr><td>4 stelle&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{domanda.quattroStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">&nbsp;{{domanda.quattroStellePercentuale}}%</div></td></tr>
+                          <tr><td>3 stelle&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{domanda.treStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">&nbsp;{{domanda.treStellePercentuale}}%</div></td></tr>
+                          <tr><td>2 stelle&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{domanda.dueStellePercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">&nbsp;{{domanda.dueStellePercentuale}}%</div></td></tr>
+                          <tr><td>1 stella&nbsp;</td><td><div class="bgimg" style="float:left"><img src="/Content/endbar.png" /><img src="/Content/bar.png" width="{{domanda.unaStellaPercentuale}}" height="17" /><img src="/Content/endbar.png" /></div><td><div style="float:right">&nbsp;{{domanda.unaStellaPercentuale}}%</div></td></tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+ 
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>

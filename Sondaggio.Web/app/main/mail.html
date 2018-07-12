@@ -14,7 +14,7 @@
 					<div class="form-group">
 						<table>
 							<tr><th colspan="2"><label for="domanda">Domanda</label></th></tr>
-							<tr><td><select style="width: 300px" class="form-control" id="domanda" name="domanda" ng-options="d.TitoloDomanda for d in Domande track by d.IdDomanda" ng-model="selectedDomanda" ng-required="true"></select></td>
+							<tr><td><select ng-disabled="!selectedSondaggio" style="width: 300px" class="form-control" id="domanda" name="domanda" ng-options="d.TitoloDomanda for d in Domande track by d.IdDomanda" ng-model="selectedDomanda" ng-required="true"></select></td>
 									<td>&nbsp;&nbsp;{{selectedDomanda.IdDomanda}}</td></tr>
 						</table>
 					</div>
@@ -31,7 +31,7 @@
 					</div>
 
 					<div>
-						<!--combo sondaggio--> <!--combo domanda--> <!--combo utente-->
+
 						<!--sul salva genera la riga su db e manda mail con link con id Risposta generato -->
 						<div>&nbsp;</div>
 							<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
