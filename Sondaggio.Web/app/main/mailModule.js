@@ -33,6 +33,9 @@
 
             return $http(req);
           },
+          updateDomande: function (id) {
+            return $http.get("/api/updateDomande/" + id);
+          },
           save: function (domande) {
             var req = {
               method: 'PATCH',
@@ -66,7 +69,8 @@
 					  };
 
 					  return $http(req);
-				  },
+          },
+         
 					save: function (utente) {
 					  var req = {
 						  method: 'PATCH',
@@ -112,10 +116,12 @@
 		      $state.go("errore");
 					});
 
-        $scope.updatedomande = function () {
-          //$scope.Domande = Sondaggio.Domande;
-          alert("ciao");
-        };
+        $scope.updatedomande = function (sondaggio) {
+          domandeService.updateDomande(sondaggio.IdSondaggio).then(function (result) {
+            $scope.Domande = result.data;
+            alert("ciao");
+          });
+        }
 
         $scope.save = function () {
           domandeService.save($scope.Domanda).then(function (data) {

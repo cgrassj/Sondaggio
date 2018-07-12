@@ -26,7 +26,7 @@
 					{
 						url: '/risposte',
 						templateUrl: 'app/main/mail.html',
-						controller: 'detailCtrl'
+            controller: 'domandeCtrl'
 				}).state('statistiche',
 				  {
 						url: '/statistiche',
@@ -172,7 +172,8 @@
 			function($scope, $state, $stateParams, sondaggiService) {
 
 				$scope.save = function() {
-					sondaggiService.save($scope.Sondaggio).then(function(result) {
+          sondaggiService.save($scope.Sondaggio).then(function (result) {
+            window.alert("Sondaggio salvato.");
 						load(result.data.IdSondaggio);
 					});
 				};
@@ -184,8 +185,15 @@
 				};
 
 				$scope.delete = function() {
-					sondaggiService.delete($scope.Sondaggio).then(function() {
+          sondaggiService.delete($scope.Sondaggio).then(function () {
+           
 					});
+        };
+
+        $scope.close = function () {
+          loadList();
+          $scope.Sondaggio = null;
+          $scope.idSondaggioSelezionato = null;
         };
         
         
@@ -200,6 +208,14 @@
         load = function (value) {
           sondaggiService.detail(value).then(function (result) {
             $scope.Sondaggio = result.data;
+          });
+        };
+
+        loadList = function () {
+          sondaggiService.list().then(function (result) {
+            $scope.ListaSondaggi = result.data;
+          }).catch(function () {
+            $state.go("errore");
           });
         };
 
