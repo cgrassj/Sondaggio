@@ -9,3 +9,6 @@
 	font-weight: bold;
 	color: brown
 }
+.bgimg {
+	background-image: url('emptyBackground.png');
+}

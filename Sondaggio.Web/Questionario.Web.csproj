@@ -480,6 +480,9 @@
     <Content Include="bower_components\jquery\external\sizzle\dist\sizzle.min.map" />
     <Content Include="bower_components\jquery\README.md" />
     <Content Include="bower_components\jquery\src\.eslintrc.json" />
+    <Content Include="Content\bar.png" />
+    <Content Include="Content\emptyBackground.png" />
+    <Content Include="Content\endbar.png" />
     <Content Include="Content\sincgil.png" />
     <Content Include="Content\site.css" />
     <Content Include="Content\star.png" />
