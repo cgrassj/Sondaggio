@@ -12,12 +12,13 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)" role="button" ng-class="{selected: s.IdSondaggio === idSondaggioSelezionato}">
-						<!--<td><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;</td>-->
-						<td>{{s.TitoloSondaggio}}</td>
-						<td>{{s.SottoTitoloSondaggio}}</td>
-						<td>{{s.DescrizioneSondaggio}}</td>
-					</tr>
+						<tr ng-repeat="s in ListaSondaggi" ng-click="detail(s.IdSondaggio)" role="button" ng-class="{selected: s.IdSondaggio === idSondaggioSelezionato}">
+							<!--<td><button style="margin-top: 0px" type="button" class="btn btn-danger" ng-click="delete(s)">Elimina</button>&nbsp;</td>-->
+							<td>{{s.TitoloSondaggio}}</td>
+							<td>{{s.SottoTitoloSondaggio}}</td>
+							<td>{{s.DescrizioneSondaggio}}</td>
+							<td><img src="/Content/{{s.MediaStelleImmagine}}"/></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
