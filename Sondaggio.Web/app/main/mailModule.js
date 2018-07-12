@@ -107,7 +107,7 @@
 			      $state.go("errore");
 		      });
 	      }
-	      //da implementare lista utenti
+
         $scope.Utenti = null;
 	      utentiService.list().then(function (result) {
 					$scope.Utenti = result.data;
@@ -118,7 +118,7 @@
         $scope.updatedomande = function (sondaggio) {
           domandeService.updateDomande(sondaggio.IdSondaggio).then(function (result) {
             $scope.Domande = result.data;
-            alert("ciao");
+						alert("ID Sondaggio = " + sondaggio.IdSondaggio);
           });
         }
 

@@ -33,11 +33,10 @@ namespace Questionario.Web
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
-				var domanda = await db.Domande
-					.FirstOrDefaultAsync(e => e.IdSondaggio== idSondaggio);
-				if (domanda == null)
+				var domande = db.Domande.Where(e => e.IdSondaggio== idSondaggio);
+				if (domande == null)
 					return NotFound();
-				return Ok(domanda);
+				return Ok(await domande.ToListAsync());
 			}
 		}
 		[Route("api/domande/{id}")]

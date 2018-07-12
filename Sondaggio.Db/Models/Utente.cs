@@ -11,6 +11,8 @@ namespace Questionario.Db.Models
 		public string IdUtente { get; set; }
 		public string Cognome { get; set; }
 		public string Nome { get; set; }
+		[NotMapped]
+		public string CognomeNome => $"{Cognome} {Nome}";
 		public DateTime? dtAgg { get; set; }
 	}
 }

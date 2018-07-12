@@ -27,9 +27,7 @@
 						url: '/public',
 						templateUrl: 'app/main/public.html',
 						controller: function ($scope, $state) { $scope.state = $state; }
-
 					})
-
 				.state('errore',
 					{
 						url: '/errore',
