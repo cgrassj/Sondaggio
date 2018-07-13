@@ -22,7 +22,22 @@ namespace Questionario.Db.Models
 		public DateTime? DataScadenzaSondaggio { get; set; }
 		public DateTime? dtAgg { get; set; }
 		public virtual ICollection<Domanda> Domande { get; set; }
+		[NotMapped]
+		public string MediaStelle
+		{
+			get
+			{
+				int numeroDomande = Domande?.Sum(domanda => domanda.Risposte?.Count ?? 0) ?? 0;
+				int numeroStelle = Domande?.Sum(domanda => domanda.Risposte?.Sum(a => a.StelleRisposta) ?? 0) ?? 0;
+				double media = 0;
 
+				if (numeroDomande > 0)
+					try { media = numeroStelle / numeroDomande; }
+					catch (OverflowException overflowException) { }
+				
+				return Math.Round(media, 1).ToString();
+			}
+		}
 		[NotMapped]
 		public string MediaStelleImmagine
 		{

@@ -146,15 +146,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\main\domandeController.js" />
     <Content Include="app\main\error.html" />
     <Content Include="app\main\error404.html" />
-    <Content Include="app\main\mail.html" />
-    <Content Include="app\main\mailModule.js" />
+    <Content Include="app\main\domande.html" />
+    <Content Include="app\main\domandeService.js" />
+    <Content Include="app\main\risposteController.js" />
+    <Content Include="app\main\sondaggiController.js" />
+    <Content Include="app\main\utentiController.js" />
     <Content Include="app\main\public.html" />
     <Content Include="app\main\private.html" />
+    <Content Include="app\main\risposteService.js" />
+    <Content Include="app\main\sondaggi.html" />
+    <Content Include="app\main\sondaggiService.js" />
     <Content Include="app\main\statistiche.html" />
-    <Content Include="app\main\sondaggio.html" />
     <Content Include="app\main\utenti.html" />
+    <Content Include="app\main\utentiService.js" />
     <Content Include="bower_components\angular-filter\.bower.json" />
     <Content Include="bower_components\angular-filter\.bowerrc" />
     <Content Include="bower_components\angular-filter\.travis.yml" />
@@ -514,7 +521,6 @@
     <Content Include="app\app.js" />
     <Content Include="app\main\main.html" />
     <Content Include="app\main\mainModule.js" />
-    <Content Include="app\sinrating.js" />
     <Content Include="bower_components\angular-filter\dist\angular-filter.js" />
     <Content Include="bower_components\angular-filter\dist\angular-filter.min.js" />
     <Content Include="bower_components\angular-filter\index.js" />

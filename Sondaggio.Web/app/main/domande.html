@@ -1,0 +1,88 @@
+<div class="panel panel-default ng-scope">
+	<div class="panel-heading"><strong>Crea domanda e invia email</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
+		<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
+			<div>
+				<div  style="margin-left: 10px; ">
+					<div class="form-group">
+						<table>
+							<tr><th colspan="2"><label for="sondaggio">Sondaggio</label></th></tr>
+							<tr><td><select style="width: 300px" class="form-control" id="sondaggio" name="sondaggio" ng-options="s.TitoloSondaggio for s in Sondaggi track by s.IdSondaggio" ng-model="selectedSondaggio" ng-required="true" ng-change="updatedomande(selectedSondaggio)"></select></td>
+									<td>&nbsp;&nbsp;{{selectedSondaggio.SottoTitoloSondaggio}} {{selectedSondaggio.DescrizioneSondaggio}}</td>
+								</tr>
+						</table>
+					</div>
+					<div class="form-group">
+						<table>
+							<tr><th colspan="2"><label for="domanda">Domanda</label></th></tr>
+							<tr><td><select ng-disabled="!selectedSondaggio" style="width: 300px" class="form-control" id="domanda" name="domanda" ng-options="d.TitoloDomanda for d in Domande track by d.IdDomanda" ng-model="selectedDomanda" ng-required="true"></select></td>
+									<td>&nbsp;&nbsp;{{selectedDomanda.IdDomanda}}</td></tr>
+						</table>
+					</div>
+					<div class="form-group">
+						<table>
+							<tr>
+								<th colspan="2">
+									<label for="utente">Utente</label>
+								</th>
+							</tr>
+							<tr><td><select style="width: 300px" class="form-control" id="utente" name="utente" ng-options="d.CognomeNome for d in Utenti track by d.IdUtente" ng-model="selectedUtente" ng-required="true"></select></td>
+									<td>&nbsp;&nbsp;{{selectedUtente.IdUtente}}</td></tr>
+						</table>
+					</div>
+
+					<div>
+
+						<!--sul salva genera la riga su db e manda mail con link con id Risposta generato -->
+						<div>&nbsp;</div>
+
+
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top: -10px">
+							Anteprima
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: brown">Anteprima</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Chiudi">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div style="margin: 10px" class="panel panel-default ng-scope" ng-if="selectedSondaggio">
+										<div>Gentile {{selectedUtente.CognomeNome}}</div>
+										<div>
+											vorremmo ringraziarLa per averci scelto e vorremmo invitarLa a rispondere ad un breve sondaggio per aiutarci a migliorare il nostro servizio
+										</div>
+										<div>&nbsp;</div>
+										<div>La preghiamo di accedere al seguente <a href="http://localhost:65129/#!/public/risposte">link</a></div>
+										<div>&nbsp;</div>
+										<div>&nbsp;</div>
+										<div>&nbsp;</div>
+										<div>&nbsp;</div>
+										<div>
+											<div>
+												Cordialmente:
+											</div>
+											{{selectedSondaggio.SottoTitoloSondaggio}} {{selectedSondaggio.DescrizioneSondaggio}}
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+						<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+						<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
+					</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
