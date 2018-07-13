@@ -118,7 +118,7 @@
         $scope.updatedomande = function (sondaggio) {
           domandeService.updateDomande(sondaggio.IdSondaggio).then(function (result) {
             $scope.Domande = result.data;
-						alert("ID Sondaggio = " + sondaggio.IdSondaggio);
+						//alert("ID Sondaggio = " + sondaggio.IdSondaggio);
           });
         }
 
