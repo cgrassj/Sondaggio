@@ -34,9 +34,53 @@
 
 						<!--sul salva genera la riga su db e manda mail con link con id Risposta generato -->
 						<div>&nbsp;</div>
-							<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
-							<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
+
+
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top: -10px">
+							Anteprima
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: brown">Anteprima</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Chiudi">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div style="margin: 10px" class="panel panel-default ng-scope" ng-if="selectedSondaggio">
+										<div>Gentile {{selectedUtente.CognomeNome}}</div>
+										<div>
+											vorremmo ringraziarLa per averci scelto e vorremmo invitarLa a rispondere ad un breve sondaggio per aiutarci a migliorare il nostro servizio
+										</div>
+										<div>&nbsp;</div>
+										<div>La preghiamo di accedere al seguente <a href="http://localhost:65129/#!/public/risposte">link</a></div>
+										<div>&nbsp;</div>
+										<div>&nbsp;</div>
+										<div>&nbsp;</div>
+										<div>&nbsp;</div>
+										<div>
+											<div>
+												Cordialmente:
+											</div>
+											{{selectedSondaggio.SottoTitoloSondaggio}} {{selectedSondaggio.DescrizioneSondaggio}}
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+									</div>
+								</div>
+							</div>
 						</div>
+
+
+
+						<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+						<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
+					</div>
 					</div>
 			</div>
 		</div>
