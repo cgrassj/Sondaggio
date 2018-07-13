@@ -34,59 +34,7 @@
           <div >
             <button type="button" class="btn" ng-click="close()">Chiudi</button>
 	          
-	          <!-- Button trigger modal -->
-	          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-		          Anteprima
-	          </button>
-
-	          <!-- Modal -->
-	          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		          <div class="modal-dialog" role="document">
-			          <div class="modal-content">
-				          <div class="modal-header">
-					          <h5 class="modal-title" id="exampleModalLabel">Sondaggio</h5>
-					          <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Chiudi">
-						          <span aria-hidden="true">&times;</span>
-					          </button>
-				          </div>
-				          <div class="modal-body">
-					          <div class="panel panel-default ng-scope" ng-if="Sondaggio">
-						          <div class="panel-heading"><strong>Anteprima</strong> <span class="badge ng-binding"></span></div>
-                      <div class="panel-body">
-							          <div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
-								          <div class="col-xs-12">
-									          <div style="background: #d9534f; color: #fff">
-										          <div style="margin-left: 20px">
-											          <h1>{{Sondaggio.TitoloSondaggio}}</h1>
-											          <h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
-										          </div>
-										          <div style="margin-left: 20px" ng-show="!Sondaggio.TitoloSondaggio">
-											          <h1><i>Titolo</i></h1>
-											          <h2><i>Sotto Titolo </i></h2>
-										          </div>
-										          <div>&nbsp;</div>
-									          </div>
-									          <div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
-										          <h2 style="color: #000">Cognome e Nome di chi compila la recensione</h2>
-										          <h3 style="color: #000">{{Sondaggio.NoteSondaggio}}</h3>
-										          <span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
-										                on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
-										          <div style="margin-right: 20px">
-											          <textarea type="text" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
-										          </div>
-									          </div>
-								          </div>
-							          </div>
-						          </div>
-					          </div>
-				          </div>
-				          <div class="modal-footer">
-					          <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-					          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-				          </div>
-			          </div>
-		          </div>
-	          </div>
+	         
           
             <div class="form-group">
               <label for="Titolo">Tipologia recensione</label>
@@ -113,10 +61,63 @@
               <textarea type="text" style="height: 100px;" rows="3" class="form-control" id="Servizi" name="Servizi" placeholder="Descrizione servizi forniti dalla sede dei quali si vuole avere un riscontro - es. Condividi la tua esperienza sul servizio 730 effettuato nella nostra sede" ng-model="Sondaggio.ListaServizi"></textarea>
             </div>
             <div style="margin-top: 120px">
-              <div class="col-md-4" style="float: left;">
-                <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
-                <button type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
-              </div>
+							<div class="col-md-4" style="float: left;">
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+									Anteprima
+								</button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: brown">Anteprima</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Chiudi">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<!--<div class="modal-body">-->
+											<div class="panel panel-default ng-scope" ng-if="Sondaggio">
+												<!--<div class="panel-heading"><strong>Anteprima</strong> <span class="badge ng-binding"></span></div>-->
+												<!--<div class="panel-body">-->
+												<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 0px; margin-top: -20px;">
+													<!--<div class="col-xs-12">-->
+													<div style="background: #d9534f; color: #fff">
+														<div style="margin-left: 20px">
+															<h1>{{Sondaggio.TitoloSondaggio}}</h1>
+															<h2>{{Sondaggio.SottoTitoloSondaggio}} {{Sondaggio.DescrizioneSondaggio}}</h2>
+														</div>
+														<div style="margin-left: 20px" ng-show="!Sondaggio.TitoloSondaggio">
+															<h1><i>Titolo</i></h1>
+															<h2><i>Sotto Titolo </i></h2>
+														</div>
+														<div>&nbsp;</div>
+													</div>
+													<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
+														<h2 style="color: #000">Cognome e Nome di chi compila la recensione</h2>
+														<h3 style="color: #000">{{Sondaggio.NoteSondaggio}}</h3>
+														<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
+																	on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+														<div style="margin-right: 20px">
+															<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="Risposta.TestoRisposta"></textarea>
+														</div>
+													</div>
+													<!--</div>-->
+													<!--</div>-->
+												</div>
+											</div>
+											<!--</div>-->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+												<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+								<button type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
+							</div>
 	            <div style="float:right">
 		            <button type="button" class="btn btn-danger" ng-click="delete()" >Elimina</button>
 	            </div>
