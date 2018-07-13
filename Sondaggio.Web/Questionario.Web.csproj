@@ -154,6 +154,7 @@
     <Content Include="app\main\private.html" />
     <Content Include="app\main\statistiche.html" />
     <Content Include="app\main\sondaggio.html" />
+    <Content Include="app\main\utenti.html" />
     <Content Include="bower_components\angular-filter\.bower.json" />
     <Content Include="bower_components\angular-filter\.bowerrc" />
     <Content Include="bower_components\angular-filter\.travis.yml" />

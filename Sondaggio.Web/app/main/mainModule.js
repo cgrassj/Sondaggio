@@ -51,7 +51,12 @@
 						url: '/statistiche',
 						templateUrl: 'app/main/statistiche.html',
 					  controller: 'domandeCtrl'
-				  });;
+				}).state('private.utenti',
+				  {
+					  url: '/utenti',
+					  templateUrl: 'app/main/utenti.html',
+					  controller: 'utentiCtrl'
+				  });
 		})
 		.factory('risposteService',
 			function($http) {
