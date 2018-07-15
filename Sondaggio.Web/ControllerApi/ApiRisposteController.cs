@@ -60,6 +60,21 @@ namespace Questionario.Web
 			}
 		}
 
+		[Route("api/risposte/{idDomanda}/{idUtente}")]
+		public async Task<IHttpActionResult> Post(int IdDomanda, string IdUtente)
+		{
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+			{
+				Risposta risposta = new Risposta();
+				risposta.IdDomanda = IdDomanda;
+				risposta.IdUtente = IdUtente;
+				risposta.StelleRisposta = -1;
+				db.Risposte.Add(risposta);
+				await db.SaveChangesAsync();
+				return Ok(risposta);
+			}
+		}
+
 		public async Task<IHttpActionResult> Delete(int id)
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())

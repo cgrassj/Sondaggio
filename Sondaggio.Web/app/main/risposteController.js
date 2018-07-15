@@ -25,6 +25,7 @@
 		.controller('risposteCtrl',
 			function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
 
+        //popola lista sondaggi
 				sondaggiService.list().then(function (result) {
 					$scope.Sondaggi = result.data;
 				}).catch(function () {
@@ -45,6 +46,7 @@
 					});
 				}
 
+        //popola lista Utenti
 				$scope.Utenti = null;
 				utentiService.list().then(function (result) {
 					$scope.Utenti = result.data;
@@ -52,19 +54,33 @@
 					$state.go("errore");
 				});
 
+        //popola lista domande del sondaggio selezionato
 				$scope.updatedomande = function (sondaggio) {
 					domandeService.updateDomande(sondaggio.IdSondaggio).then(function (result) {
 						$scope.Domande = result.data;
 					});
 				}
 
-				$scope.save = function () {
-					domandeService.save($scope.Domanda).then(function (data) {
-						window.alert("Mail inviata.");
-					}).catch(function () {
-						$state.go("errore");
-					});
-				}
+        $scope.save = function () {
+          risposteService.create($scope.selectedDomanda.IdDomanda, $scope.selectedUtente.IdUtente).then(function (result) {
+           
+            
+
+              window.alert("Mail inviata.");
+
+          });
+
+
+          
+        }
+
+				//$scope.save = function () {
+    //      risposteService.save($scope.selectedDomanda, $scope.SelectedUtente).then(function (data) {
+				//		window.alert("Mail inviata.");
+				//	}).catch(function () {
+				//		$state.go("errore");
+				//	});
+				//}
 			});
 })(window, window.angular);
 

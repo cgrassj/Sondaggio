@@ -10,14 +10,14 @@
 					detail: function (id) {
 						return $http.get("/api/risposte/" + id);
 					},
-					create: function (risposta) {
+					create: function (iddomanda, idutente) {
 						var req = {
 							method: 'POST',
-							url: '/api/risposte',
+              url: '/api/risposte/' + iddomanda + '/' + idutente,
 							headers: {
 								'Content-Type': 'application/json'
-							},
-							data: risposta
+							}/*,
+							data: risposta*/
 						};
 						return $http(req);
 					},
