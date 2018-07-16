@@ -112,7 +112,7 @@
 																							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
 																								...
 																							</button>
-																							<a ui-sref="#exampleModal">{{s.Utente.CognomeNome}} {{s.TestoRisposta}} <img src="/Content/{{s.StelleImmagine}}"/> ({{s.StelleRisposta}})</a>
+																						{{s.Utente.CognomeNome}} {{s.TestoRisposta}} <img src="/Content/{{s.StelleImmagine}}"/>
 
 																							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 																								<div class="modal-dialog" role="document">
@@ -123,14 +123,14 @@
 																												<span aria-hidden="true">&times;</span>
 																											</button>
 																										</div>
-																										<div class="panel panel-default ng-scope" ng-if="s.Domanda.Sondaggio">
+																										<div class="panel panel-default ng-scope">
 																											<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 0px; margin-top: -20px;">
 																												<div style="background: #d9534f; color: #fff">
 																													<div style="margin-left: 20px">
-																														<h1>{{s.Domanda.Sondaggio.TitoloSondaggio}}</h1>
-																														<h2>{{s.Domanda.Sondaggio.SottoTitoloSondaggio}} {{s.Domanda.Sondaggio.DescrizioneSondaggio}}</h2>
+																														<h1>{{sondaggio.TitoloSondaggio}}</h1>
+																														<h2>{{sondaggio.SottoTitoloSondaggio}} {{sondaggio.DescrizioneSondaggio}}</h2>
 																													</div>
-																													<div style="margin-left: 20px" ng-show="!s.Domanda.Sondaggio.TitoloSondaggio">
+																													<div style="margin-left: 20px" ng-show="!sondaggio.TitoloSondaggio">
 																														<h1><i>Titolo</i></h1>
 																														<h2><i>Sotto Titolo </i></h2>
 																													</div>
@@ -138,7 +138,7 @@
 																												</div>
 																												<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
 																													<h2 style="color: #000">{{s.Utente.CognomeNome}}</h2>
-																													<h3 style="color: #000">{{s.Domanda.Sondaggio.NoteSondaggio}}</h3>
+																													<h3 style="color: #000">{{sondaggio.NoteSondaggio}}</h3>
 																													<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="s.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
 																													      on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
 																													<div style="margin-right: 20px">

@@ -26,6 +26,8 @@ namespace Questionario.Db.Models
 				var v = (StelleRisposta * 10).ToString("##") + ".png";
 				if (v == ".png")
 					v = "0.png";
+				if (v == "-10.png")
+					v = "0.png";
 				return v;
 			}
 		}

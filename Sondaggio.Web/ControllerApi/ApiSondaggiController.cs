@@ -22,7 +22,12 @@ namespace Questionario.Web
 		public async Task<IHttpActionResult> Get()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-				return Ok(await db.Sondaggi.Include(a => a.Domande).Include(e => e.Domande.Select(r => r.Risposte)).ToListAsync());
+				return Ok(await db.Sondaggi
+					.Include(a => a.Domande)
+					.Include(e => e.Domande.Select(r => r.Risposte))
+					.Include(e => e.Domande.Select(r => r.Risposte.Select(f=>f.Utente)))
+
+					.ToListAsync());
 		}
 
 		[Route("api/sondaggi/{id}")]
@@ -30,7 +35,11 @@ namespace Questionario.Web
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
-				var sondaggio = await db.Sondaggi.Include(e => e.Domande).FirstOrDefaultAsync(e => e.IdSondaggio == id);
+				var sondaggio = await db.Sondaggi
+					.Include(e => e.Domande)
+					.Include(f=> f.Domande.Select(g=>g.Risposte))
+					.Include(f=> f.Domande.Select(g=>g.Risposte.Select(k=>k.Utente)))
+					.FirstOrDefaultAsync(e => e.IdSondaggio == id);
 				if(sondaggio != null && sondaggio.Domande != null && sondaggio.Domande.Count > 0)
 					sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
 				if (sondaggio == null)
