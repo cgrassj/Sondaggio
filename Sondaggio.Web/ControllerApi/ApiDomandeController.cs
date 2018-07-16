@@ -23,7 +23,8 @@ namespace Questionario.Web
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
-				var domande = db.Domande.Include(e => e.Sondaggio).Include(e => e.Risposte).ToList();
+				var domande = db.Domande.Include(e => e.Sondaggio).Include(e => e.Risposte)
+					.Include(e => e.Risposte.Select(r => r.Utente)).ToList();
 				return Ok(domande);
 			}
 		}

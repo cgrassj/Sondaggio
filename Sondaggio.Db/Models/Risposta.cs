@@ -18,6 +18,16 @@ namespace Questionario.Db.Models
 		public virtual Domanda Domanda { get; set; }
 		[ForeignKey("IdUtente")]
 		public virtual Utente Utente { get; set; }
-
+		[NotMapped]
+		public string StelleImmagine
+		{
+			get
+			{
+				var v = (StelleRisposta * 10).ToString("##") + ".png";
+				if (v == ".png")
+					v = "0.png";
+				return v;
+			}
+		}
 	}
 }

@@ -73,6 +73,19 @@ namespace Questionario.Web
 				return Ok(utente);
 			}
 		}
-
+		[Route("api/utenti/{id}")]
+		[HttpPatch]
+		public async Task<IHttpActionResult> Patch(string id, Utente cmp)
+		{
+			if (id != cmp.IdUtente)
+				return BadRequest();
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+			{
+				db.Entry(cmp).State = EntityState.Modified;
+				cmp.dtAgg = DateTime.Now;
+				await db.SaveChangesAsync();
+				return Ok(cmp);
+			}
+		}
 	}
 }

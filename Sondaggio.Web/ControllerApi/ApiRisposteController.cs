@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Questionario.Db;
@@ -116,5 +117,19 @@ namespace Questionario.Web
 				return Ok(risposta);
 			}
 		}
+
+		public void SendMail(string cognomeNome, string sottoTitoloSondaggio, string descrizioneSondaggio)
+		{
+			MailMessage m = new MailMessage();
+			SmtpClient client = new SmtpClient();
+			client.Port = 25;
+			client.Host = "smtp.cgil.lombardia.it";
+			m.Subject = "oggetto email";
+			m.Body = TestoEmail.Replace("CognomeNome", cognomeNome).Replace("SottoTitoloSondaggio", sottoTitoloSondaggio).Replace("DescrizioneSondaggio", descrizioneSondaggio);
+			client.Send(m);
+		}
+
+		protected const string TestoEmail = "<div>Gentile {{CognomeNome}}</div><div>vorremmo ringraziarLa per averci scelto e vorremmo invitarLa a rispondere ad un breve sondaggio per aiutarci a migliorare il nostro servizio</div><div>&nbsp;</div><div>La preghiamo di accedere al seguente <a href='{{URL}}'>link</a></div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div><div>Cordialmente:</div>{{SottoTitoloSondaggio}} {{DescrizioneSondaggio}}</div>";
+
 	}
 }

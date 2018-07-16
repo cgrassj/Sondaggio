@@ -26,8 +26,8 @@
 						$state.go("errore");
 					});
 				}
-				$scope.save = function () {
-					utentiService.save($scope.Utente).then(function () {
+				$scope.save = function (result) {
+					utentiService.save(result).then(function () {
 					}).catch(function () {
 						$state.go("errore");
 					});

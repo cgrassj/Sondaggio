@@ -111,7 +111,7 @@ namespace Questionario.Web.Controller
 				client.Port = 25;
 				client.Host = "smtp.cgil.lombardia.it";
 				m.Subject = "oggetto email";
-				m.Body = TestoEmail.Replace("CognomeNome",).Replace("SottoTitoloSondaggio", sottoTitoloSondaggio).Replace("DescrizioneSondaggio", descrizioneSondaggio);
+				m.Body = TestoEmail.Replace("CognomeNome", cognomeNome).Replace("SottoTitoloSondaggio", sottoTitoloSondaggio).Replace("DescrizioneSondaggio", descrizioneSondaggio);
 				client.Send(m);
 			}
 
