@@ -74,9 +74,9 @@
     .controller('risposteDettaglioCtrl',
       function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
 
+        $scope.nuovaRisposta = null;
         if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
           $state.go("errore");
-          
         } else {
           loadReview($stateParams.id)
         }
@@ -85,7 +85,8 @@
           if ($scope.rispostaDtAgg) {
             if (confirm("Sicuro di voler modificare la recensione?"))
               risposteService.save($scope.Risposta).then(function (result) {
-                window.alert("Recensione modificata.");
+                //window.alert("Recensione modificata.");
+                $scope.nuovaRisposta = 1;
               });
             else {
               loadReview($scope.Risposta.IdRisposta);
@@ -94,11 +95,12 @@
           }
           else
             risposteService.save($scope.Risposta).then(function (result) {
-              window.alert("Recensione pubblicata.");
+              //window.alert("Recensione pubblicata.");
+              $scope.nuovaRisposta = 1;
             });
         }
 
-        $scope.annulla = function () { loadReview($scope.Risposta.IdRisposta); }
+        $scope.annulla = function () { loadReview($scope.Risposta.IdRisposta); $scope.nuovaRisposta = null; }
 
         function loadReview(idRisposta) {
           risposteService.detail(idRisposta).then(function (result) {
