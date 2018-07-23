@@ -69,9 +69,6 @@
               window.alert("Mail inviata.");
 
           });
-
-
-          
         }
      })
     .controller('risposteDettaglioCtrl',

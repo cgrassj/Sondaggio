@@ -72,6 +72,17 @@ namespace Questionario.Web
 				risposta.StelleRisposta = -1;
 				db.Risposte.Add(risposta);
 				await db.SaveChangesAsync();
+
+				var idRisposta = risposta.IdRisposta;
+
+				risposta = await db
+					.Risposte
+					.Include(e => e.Domanda)
+					.Include(e => e.Utente)
+					.Include(e => e.Domanda.Sondaggio)
+					.FirstOrDefaultAsync(e => e.IdRisposta == idRisposta);
+
+				SendMail(risposta);
 				return Ok(risposta);
 			}
 		}
@@ -118,15 +129,22 @@ namespace Questionario.Web
 			}
 		}
 
-		public void SendMail(string cognomeNome, string sottoTitoloSondaggio, string descrizioneSondaggio)
+		public void SendMail(Risposta risposta)
 		{
-			MailMessage m = new MailMessage();
+			MailMessage m = new MailMessage("sondaggi@sincgil.it", risposta.Utente.Mail);
+			m.IsBodyHtml = true;
+			m.Subject = risposta.Domanda.Sondaggio.TitoloSondaggio;
+			string url = "http://localhost:65129" + "#!/public/dettagliRisposta/" + risposta.IdRisposta;
+			m.Body = TestoEmail.Replace("{{URL}}", url).Replace("{{CognomeNome}}", risposta.Utente.CognomeNome).Replace("{{SottoTitoloSondaggio}}", risposta.Domanda.Sondaggio.SottoTitoloSondaggio).Replace("{{DescrizioneSondaggio}}", risposta.Domanda.Sondaggio.DescrizioneSondaggio);
+
 			SmtpClient client = new SmtpClient();
 			client.Port = 25;
 			client.Host = "smtp.cgil.lombardia.it";
-			m.Subject = "oggetto email";
-			m.Body = TestoEmail.Replace("CognomeNome", cognomeNome).Replace("SottoTitoloSondaggio", sottoTitoloSondaggio).Replace("DescrizioneSondaggio", descrizioneSondaggio);
 			client.Send(m);
+
+			m.Dispose();
+			client.Dispose();
+			
 		}
 
 		protected const string TestoEmail = "<div>Gentile {{CognomeNome}}</div><div>vorremmo ringraziarLa per averci scelto e vorremmo invitarLa a rispondere ad un breve sondaggio per aiutarci a migliorare il nostro servizio</div><div>&nbsp;</div><div>La preghiamo di accedere al seguente <a href='{{URL}}'>link</a></div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div><div>Cordialmente:</div>{{SottoTitoloSondaggio}} {{DescrizioneSondaggio}}</div>";

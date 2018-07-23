@@ -142,10 +142,10 @@
 						<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
 							<h2 style="color: #000">{{s.Utente.CognomeNome}}</h2>
 							<h3 style="color: #000">{{sondaggio.NoteSondaggio}}</h3>
-							<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="s.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
-										on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+							<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="s.StelleRisposta" max="5" read-only="isReadonly" 
+										 titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
 							<div style="margin-right: 20px">
-								<textarea type="text" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="s.TestoRisposta"></textarea>
+								<textarea type="text" readonly="readonly" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="s.TestoRisposta"></textarea>
 							</div>
 						</div>
 					</div>
