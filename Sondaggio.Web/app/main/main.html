@@ -1,45 +1,56 @@
-﻿<div style="margin-left: 10px; margin-top: -20px">
-	<div style="background: #d9534f; margin-left: -10px; color: #fff">
-		<div style="margin-left: 20px">
-			<div>&nbsp;</div>
-			<h1>{{Risposta.Domanda.Sondaggio.TitoloSondaggio}}</h1>
-			<h2>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h2>
-			<div>&nbsp;</div>
-		</div>
-	</div>
-	<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
-		<h2 style="color: #000">{{Risposta.Utente.Cognome}} {{Risposta.Utente.Nome}}</h2>
-		<h3 style="color: #000">{{Risposta.Domanda.Sondaggio.NoteSondaggio}}</h3>
-		<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
-					on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
-	</div>
+﻿<div id="fb-root"></div>
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v3.0';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 
-	<form name="form" role="form" ng-class="{'readonly': state.includes('private')}">
-		<div class="form-group" style="margin-left: 10px; margin-right: 20px">
-			<textarea type="text" style="height: 200px; width:600px" rows="5" class="form-control"
-								id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}"
-								ng-model="Risposta.TestoRisposta"></textarea>
-			<div>&nbsp;</div>
-			<div ng-if="rispostaDtAgg">Risposta pubblicata il <span ng-bind="rispostaDtAgg | date:'dd/MM/yyyy'"></span> alle <span ng-bind="rispostaDtAgg | date:'HH:mm:ss'"></span></div>
-			<div>&nbsp;</div>
-			<div ng-class="{'invisible': state.includes('private')}">
-			<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
-			<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
-			</div>
-			<!-- Your share button code -->
-			<div ng-show="rispostaDtAgg" style="margin-top: 10px" class="fb-share-button"
-			     data-href="{{Risposta.Domanda.Sondaggio.UrlSondaggio}}"
-			     data-layout="button" data-size="large"
-			     data-mobile-iframe="false">
-			</div>
+<div style="margin-left: 10px; margin-top: -20px">
+  <div style="background: #d9534f; margin-left: -10px; color: #fff">
+    <div style="margin-left: 20px">
+      <div>&nbsp;</div>
+      <h1>{{Risposta.Domanda.Sondaggio.TitoloSondaggio}}</h1>
+      <h2>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h2>
+      <div>&nbsp;</div>
+    </div>
+  </div>
+  <div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
+    <h2 style="color: #000">{{Risposta.Utente.Cognome}} {{Risposta.Utente.Nome}}</h2>
+    <h3 style="color: #000">{{Risposta.Domanda.Sondaggio.NoteSondaggio}}</h3>
+    <span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
+          on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+  </div>
 
-		</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-	</form>
+  <form name="form" role="form" ng-class="{'readonly': state.includes('private')}">
+    <div class="form-group" style="margin-left: 10px; margin-right: 20px">
+      <textarea type="text" style="height: 200px; width:600px" rows="5" class="form-control"
+                id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}"
+                ng-model="Risposta.TestoRisposta"></textarea>
+      <div>&nbsp;</div>
+      <div ng-if="rispostaDtAgg">Risposta pubblicata il <span ng-bind="rispostaDtAgg | date:'dd/MM/yyyy'"></span> alle <span ng-bind="rispostaDtAgg | date:'HH:mm:ss'"></span></div>
+      <div>&nbsp;</div>
+      <div ng-class="{'invisible': state.includes('private')}">
+        <button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
+        <button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
+      </div>
+      <!-- Your share button code -->
+      <div ng-show="rispostaDtAgg" style="margin-top: 10px" class="fb-share-button"
+           data-href="{{Risposta.Domanda.Sondaggio.UrlSondaggio}}"
+           data-layout="button" data-size="large"
+           data-mobile-iframe="false">
+      </div>
+
+    </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+  </form>
 </div>
 
+
 <footer id="footer">
-	<div id="footer-content" style="background-color: #f3e5f5; padding: 10px; position: absolute; bottom: 0px; display:none;">{{Risposta.Utente.IdUtente}} {{Risposta.dtAgg}}</div>
+  <div id="footer-content" style="background-color: #f3e5f5; padding: 10px; position: absolute; bottom: 0px; display:none;">{{Risposta.Utente.IdUtente}} {{Risposta.dtAgg}}</div>
 </footer>

@@ -78,26 +78,38 @@
       function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
 
         if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
-          domandeService.list().then(function (result) {
-            $scope.ListaDomande = result.data;
-          }).catch(function () {
-            $state.go("errore");
-          });
+          $state.go("errore");
+          
         } else {
-          risposteService.detail($stateParams.id).then(function (result) {
-            $scope.Risposta = result.data;
-
-            $scope.rispostaDtAgg = $scope.Risposta.rispostaDtAgg;
-          }).catch(function () {
-            $state.go("errore");
-          });
+          loadReview($stateParams.id)
         }
 
         $scope.save = function () {
-          risposteService.save($scope.Risposta).then(function (result) {
-
-            window.alert("Recensione inviata.");
+          if ($scope.rispostaDtAgg) {
+            if (confirm("Sicuro di voler modificare la recensione?"))
+              risposteService.save($scope.Risposta).then(function (result) {
+                window.alert("Recensione modificata.");
+              });
+            else {
+              loadReview($scope.Risposta.IdRisposta);
+               
+            }
+          }
+          else
+            risposteService.save($scope.Risposta).then(function (result) {
+              window.alert("Recensione pubblicata.");
             });
+        }
+
+        $scope.annulla = function () { loadReview($scope.Risposta.IdRisposta); }
+
+        function loadReview(idRisposta) {
+          risposteService.detail(idRisposta).then(function (result) {
+            $scope.Risposta = result.data;
+            $scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+          }).catch(function () {
+            $state.go("errore");
+          });
         }
 
       });
