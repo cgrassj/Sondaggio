@@ -14,6 +14,19 @@
 		.controller('sondaggiCtrl',
 			function ($scope, $state, $stateParams, sondaggiService) {
 
+				$scope.aggiungiCognomeNome = function() {
+					$scope.Sondaggio.TestoEmail += '{{CognomeNome}}';
+				}
+				$scope.aggiungiSottoTitoloSondaggio = function () {
+					$scope.Sondaggio.TestoEmail += '{{SottoTitoloSondaggio}}';
+				}
+				$scope.aggiungiDescrizioneSondaggio = function () {
+					$scope.Sondaggio.TestoEmail += '{{DescrizioneSondaggio}}';
+				}
+				$scope.aggiungiUrl = function () {
+					$scope.Sondaggio.TestoEmail += '<a href="{{URL}}">link</a>';
+				}
+
 				$scope.save = function () {
 					sondaggiService.save($scope.Sondaggio).then(function (result) {
 						window.alert("Sondaggio salvato.");
