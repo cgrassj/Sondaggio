@@ -18,6 +18,7 @@ namespace Questionario.Db.Models
 		[ForeignKey("IdSondaggio")]
 		public virtual Sondaggio Sondaggio { get; set; }
 		public virtual ICollection<Risposta> Risposte { get; set; }
+		public string TestoEmail { get; set; }
 
 		[NotMapped]
 		public string MediaStelle
