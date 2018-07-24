@@ -40,8 +40,9 @@ namespace Questionario.Web
 					.Include(f=> f.Domande.Select(g=>g.Risposte))
 					.Include(f=> f.Domande.Select(g=>g.Risposte.Select(k=>k.Utente)))
 					.FirstOrDefaultAsync(e => e.IdSondaggio == id);
-				if(sondaggio != null && sondaggio.Domande != null && sondaggio.Domande.Count > 0)
+				if (sondaggio != null && sondaggio.Domande != null && sondaggio.Domande.Count > 0)
 					sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
+
 				if (sondaggio == null)
 					return NotFound();
 				return Ok(sondaggio);

@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201807240802571_testoMail.Designer.cs">
       <DependentUpon>201807240802571_testoMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807240831350_spostatotestoMail.cs" />
+    <Compile Include="Migrations\201807240831350_spostatotestoMail.Designer.cs">
+      <DependentUpon>201807240831350_spostatotestoMail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Domanda.cs" />
     <Compile Include="Models\Utente.cs" />
@@ -110,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807240802571_testoMail.resx">
       <DependentUpon>201807240802571_testoMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807240831350_spostatotestoMail.resx">
+      <DependentUpon>201807240831350_spostatotestoMail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

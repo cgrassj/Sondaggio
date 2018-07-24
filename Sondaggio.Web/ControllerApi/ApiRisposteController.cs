@@ -135,6 +135,7 @@ namespace Questionario.Web
 			m.IsBodyHtml = true;
 			m.Subject = risposta.Domanda.Sondaggio.TitoloSondaggio;
 			string url = "http://localhost:65129" + "#!/public/dettagliRisposta/" + risposta.IdRisposta;
+			var TestoEmail = string.IsNullOrEmpty(risposta.Domanda.Sondaggio.TestoEmail) ? ApiRisposteController.TestoEmail : risposta.Domanda.Sondaggio.TestoEmail;
 			m.Body = TestoEmail.Replace("{{URL}}", url).Replace("{{CognomeNome}}", risposta.Utente.CognomeNome).Replace("{{SottoTitoloSondaggio}}", risposta.Domanda.Sondaggio.SottoTitoloSondaggio).Replace("{{DescrizioneSondaggio}}", risposta.Domanda.Sondaggio.DescrizioneSondaggio);
 
 			SmtpClient client = new SmtpClient();
