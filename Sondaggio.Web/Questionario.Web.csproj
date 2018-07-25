@@ -147,10 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\main\domandeController.js" />
+    <Content Include="app\main\end.html" />
     <Content Include="app\main\error.html" />
     <Content Include="app\main\error404.html" />
     <Content Include="app\main\domande.html" />
     <Content Include="app\main\domandeService.js" />
+    <Content Include="app\main\landing.html" />
     <Content Include="app\main\risposteController.js" />
     <Content Include="app\main\sondaggiController.js" />
     <Content Include="app\main\utentiController.js" />
