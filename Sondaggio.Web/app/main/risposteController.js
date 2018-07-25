@@ -3,12 +3,24 @@
 	angular.module('mainModule')
 		.config(function ($stateProvider) {
 			$stateProvider
-				.state('public.dettagliRisposta',
+				.state('public.inizioRisposta',
 					{
 						url: '/dettagliRisposta/:id',
-						templateUrl: 'app/main/main.html',
+						templateUrl: 'app/main/landing.html',
+            controller: 'risposteInizioCtrl'
+          })
+        .state('public.inserisciRisposta',
+          {
+            url: '/dettagliRisposta/',
+            templateUrl: 'app/main/main.html',
             controller: 'risposteDettaglioCtrl'
-					})
+          })
+        .state('public.fineRisposta',
+          {
+            url: '/dettagliRisposta/',
+            templateUrl: 'app/main/end.html',
+            controller: 'risposteFineCtrl'
+          })
 				.state('private.dettagliRisposta',
 					{
 						url: '/dettagliRisposta/:id',
@@ -75,18 +87,19 @@
       function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
 
         $scope.nuovaRisposta = null;
-        if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
+
+        if (typeof $scope.id === "undefined" || $scope.id === "") {
           $state.go("errore");
         } else {
-          loadReview($stateParams.id)
+          loadReview($scope.id)
         }
-
         $scope.save = function () {
           if ($scope.rispostaDtAgg) {
             if (confirm("Sicuro di voler modificare la recensione?"))
               risposteService.save($scope.Risposta).then(function (result) {
                 //window.alert("Recensione modificata.");
                 $scope.nuovaRisposta = 1;
+                $state.go("public.fineRisposta");
               });
             else {
               loadReview($scope.Risposta.IdRisposta);
@@ -97,6 +110,7 @@
             risposteService.save($scope.Risposta).then(function (result) {
               //window.alert("Recensione pubblicata.");
               $scope.nuovaRisposta = 1;
+              $state.go("public.fineRisposta");
             });
         }
 
@@ -111,6 +125,23 @@
           });
         }
 
-      });
+    })
+  .controller('risposteInizioCtrl',
+    function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
+      if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
+        $state.go("errore");
+      } else {
+        //loadReview($stateParams.id)
+        $scope.id = $stateParams.id;
+      }
+
+      $scope.successivo = function () { $state.go("public.inserisciRisposta"); }
+    })
+  .controller('risposteFineCtrl',
+    function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
+       
+
+      $scope.successivo = function () { $state.go("public.inserisciRisposta"); }
+    });
 })(window, window.angular);
 
