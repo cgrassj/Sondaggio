@@ -25,8 +25,8 @@ namespace Questionario.Db.Models
 			get
 			{
 				double media = 0;
-				if(Risposte?.Count > 0)
-					try { media = Risposte.Average(a => a.StelleRisposta); }
+				if(Risposte?.Count(b => b.StelleRisposta > 0) > 0)
+					try { media = Risposte.Where(b => b.StelleRisposta > 0).Average(a => a.StelleRisposta); }
 					catch (OverflowException overflowException) { }
 				return Math.Round(media, 1).ToString();
 			}
@@ -38,8 +38,8 @@ namespace Questionario.Db.Models
 			get
 			{
 				double media = 0;
-				if (Risposte?.Count > 0)
-					try { media = Risposte.Average(a => a.StelleRisposta); }
+				if (Risposte?.Count(b => b.StelleRisposta > 0) > 0)
+					try { media = Risposte.Where(b => b.StelleRisposta > 0).Average(a => a.StelleRisposta); }
 					catch (OverflowException overflowException) { }
 
 				double ret = 0;

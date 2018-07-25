@@ -28,8 +28,8 @@ namespace Questionario.Db.Models
 		{
 			get
 			{
-				int numeroDomande = Domande?.Sum(domanda => domanda.Risposte?.Count ?? 0) ?? 0;
-				int numeroStelle = Domande?.Sum(domanda => domanda.Risposte?.Sum(a => a.StelleRisposta) ?? 0) ?? 0;
+				int numeroDomande = Domande?.Sum(domanda => domanda.Risposte?.Count(b => b.StelleRisposta > 0) ?? 0) ?? 0;
+				int numeroStelle = Domande?.Sum(domanda => domanda.Risposte?.Where(b => b.StelleRisposta > 0).Sum(a => a.StelleRisposta) ?? 0) ?? 0;
 				double media = 0;
 
 				if (numeroDomande > 0)
@@ -44,8 +44,8 @@ namespace Questionario.Db.Models
 		{
 			get
 			{
-				int numeroDomande = Domande?.Sum(domanda => domanda.Risposte?.Count ?? 0) ?? 0;
-				int numeroStelle = Domande?.Sum(domanda => domanda.Risposte?.Sum(a => a.StelleRisposta) ?? 0) ?? 0;
+				int numeroDomande = Domande?.Sum(domanda => domanda.Risposte?.Count(b => b.StelleRisposta > 0) ?? 0) ?? 0;
+				int numeroStelle = Domande?.Sum(domanda => domanda.Risposte?.Where(b => b.StelleRisposta > 0).Sum(a => a.StelleRisposta) ?? 0) ?? 0;
 
 				double media = 0;
 				if (numeroDomande > 0)
