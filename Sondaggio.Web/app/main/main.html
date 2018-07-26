@@ -22,6 +22,12 @@
 								id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}"
 								ng-model="Risposta.TestoRisposta"></textarea>
 			<div>&nbsp;</div>
+			
+			<!--<div class="alert alert-success fade in" ng-if="rispostaDtAgg">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong>Grazie!</strong> La Sua risposta &egrave; stata inviata correttamente.
+			</div>-->
+
 			<div ng-if="rispostaDtAgg">Risposta pubblicata il <span ng-bind="rispostaDtAgg | date:'dd/MM/yyyy'"></span> alle <span ng-bind="rispostaDtAgg | date:'HH:mm:ss'"></span></div>
 			<div>&nbsp;</div>
 			<div><font style="height: 2px">&nbsp;</font></div>

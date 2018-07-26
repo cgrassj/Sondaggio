@@ -35,7 +35,7 @@
           });
     })
     .controller('risposteCtrl',
-      function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
+		function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService, toaster) {
 
         //popola lista sondaggi
         sondaggiService.list().then(function (result) {
@@ -75,12 +75,9 @@
 
         $scope.save = function () {
           risposteService.create($scope.selectedDomanda.IdDomanda, $scope.selectedUtente.IdUtente).then(function (result) {
-
-
-
-            window.alert("Mail inviata.");
-
-          });
+	        toaster.pop('info', "Sondaggio", "Mail inviata correttamente");
+	        $scope.MailInviata = true;
+        });
         }
       })
     .controller('risposteDettaglioCtrl',
@@ -90,20 +87,41 @@
         if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
           $state.go("errore");
         } else {
-          loadReview($stateParams.id)
+	        loadReview($stateParams.id);
         }
         $scope.save = function () {
-          if ($scope.rispostaDtAgg) {
-            if (confirm("Sicuro di voler modificare la recensione?"))
-              risposteService.save($scope.Risposta).then(function (result) {
-                $scope.nuovaRisposta = 1;
-                $state.go("public.fineRisposta");
-              });
-            else {
-              //loadReview($scope.Risposta.IdRisposta);
-              loadReview($scope.$id);
-
-            }
+					if ($scope.rispostaDtAgg) {
+						window.swal({
+							title: "Salvare?",
+							text: "Sicuro di voler modificare la recensione?",
+							icon: "warning",
+							buttons: ["Annulla", "Continua"],
+								
+								dangerMode: true
+							})
+							.then((ok) => {
+								if (ok) {
+									risposteService.save($scope.Risposta).then(function(result) {
+										$scope.nuovaRisposta = 1;
+										$state.go("public.fineRisposta");
+									});
+									window.swal("Recensione aggiornata con successo", {
+										icon: "success"
+									});
+								} else {
+									loadReview($scope.$id);
+									window.swal("Non sono state fatte modifiche alla recensione!");
+								}
+							});
+            //if (confirm("Sicuro di voler modificare la recensione?"))
+            //  risposteService.save($scope.Risposta).then(function (result) {
+            //    $scope.nuovaRisposta = 1;
+            //    $state.go("public.fineRisposta");
+            //  });
+            //else {
+            //  //loadReview($scope.Risposta.IdRisposta);
+            //  loadReview($scope.$id);
+            //}
           }
           else
             risposteService.save($scope.Risposta).then(function (result) {

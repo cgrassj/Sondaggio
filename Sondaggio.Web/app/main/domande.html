@@ -1,21 +1,24 @@
-<div class="panel panel-default ng-scope">
-	<div class="panel-heading"><strong>Crea domanda e invia email</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
+<div class="panel panel-default ng-scope shadow-lg p-3 mb-5 bg-white rounded col-lg-6 col-md-8  col-sm-8">
+	<div class="panel-heading" style="margin-top: -10px; margin-left: -10px; margin-right: -10px"><strong>Crea domanda e invia email</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
 		<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
 			<div>
-				<div  style="margin-left: 10px; ">
+				<div style="margin-left: 10px; ">
 					<div class="form-group">
 						<table>
 							<tr><th colspan="2"><label for="sondaggio">Sondaggio</label></th></tr>
-							<tr><td><select style="width: 300px" class="form-control" id="sondaggio" name="sondaggio" ng-options="s.TitoloSondaggio for s in Sondaggi track by s.IdSondaggio" ng-model="selectedSondaggio" ng-required="true" ng-change="updatedomande(selectedSondaggio)"></select></td>
-									<td>&nbsp;&nbsp;{{selectedSondaggio.SottoTitoloSondaggio}} {{selectedSondaggio.DescrizioneSondaggio}}</td>
-								</tr>
+							<tr>
+								<td><select style="width: 300px" class="form-control" id="sondaggio" name="sondaggio" ng-options="s.TitoloSondaggio for s in Sondaggi track by s.IdSondaggio" ng-model="selectedSondaggio" ng-required="true" ng-change="updatedomande(selectedSondaggio)"></select></td>
+								<td>&nbsp;&nbsp;{{selectedSondaggio.SottoTitoloSondaggio}} {{selectedSondaggio.DescrizioneSondaggio}}</td>
+							</tr>
 						</table>
 					</div>
 					<div class="form-group">
 						<table>
 							<tr><th colspan="2"><label for="domanda">Domanda</label></th></tr>
-							<tr><td><select ng-disabled="!selectedSondaggio" style="width: 300px" class="form-control" id="domanda" name="domanda" ng-options="d.TitoloDomanda for d in Domande track by d.IdDomanda" ng-model="selectedDomanda" ng-required="true"></select></td>
-									<td>&nbsp;&nbsp;{{selectedDomanda.IdDomanda}}</td></tr>
+							<tr>
+								<td><select ng-disabled="!selectedSondaggio" style="width: 300px" class="form-control" id="domanda" name="domanda" ng-options="d.TitoloDomanda for d in Domande track by d.IdDomanda" ng-model="selectedDomanda" ng-required="true"></select></td>
+								<td>&nbsp;&nbsp;{{selectedDomanda.IdDomanda}}</td>
+							</tr>
 						</table>
 					</div>
 					<div class="form-group">
@@ -25,8 +28,10 @@
 									<label for="utente">Utente</label>
 								</th>
 							</tr>
-							<tr><td><select style="width: 300px" class="form-control" id="utente" name="utente" ng-options="d.CognomeNome for d in Utenti track by d.IdUtente" ng-model="selectedUtente" ng-required="true"></select></td>
-									<td>&nbsp;&nbsp;{{selectedUtente.IdUtente}}</td></tr>
+							<tr>
+								<td><select style="width: 300px" class="form-control" id="utente" name="utente" ng-options="d.CognomeNome for d in Utenti track by d.IdUtente" ng-model="selectedUtente" ng-required="true"></select></td>
+								<td>&nbsp;&nbsp;{{selectedUtente.IdUtente}}</td>
+							</tr>
 						</table>
 					</div>
 
@@ -80,8 +85,9 @@
 
 						<button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="">Salva</button>
 						<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla(Risposta)">Annulla</button>
+					
 					</div>
-					</div>
+				</div>
 			</div>
 		</div>
 	</div>
