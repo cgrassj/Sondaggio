@@ -14,12 +14,14 @@
             url: '/inserisciRisposta/:id',
             templateUrl: 'app/main/main.html',
             controller: 'risposteDettaglioCtrl',
+            params: { IdRispostaDaPassare: -1, }
           })
         .state('public.fineRisposta',
           {
             url: '/fineRisposta',
             templateUrl: 'app/main/end.html',
-            controller: 'risposteFineCtrl'
+            controller: 'risposteFineCtrl',
+            params: { IdRispostaDaPassare: -1, }
           })
         .state('private.dettagliRisposta',
           {
@@ -85,7 +87,12 @@
 
         $scope.nuovaRisposta = null;
         if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
-          $state.go("errore");
+          if ($stateParams.IdRispostaDaPassare === "undefined" || $stateParams.IdRispostaDaPassare === -1)
+            $state.go("errore");
+          else {
+            loadReview($stateParams.IdRispostaDaPassare);
+          }
+          
         } else {
 	        loadReview($stateParams.id);
         }
@@ -96,16 +103,17 @@
 							text: "Sicuro di voler modificare la recensione?",
 							icon: "warning",
 							buttons: ["Annulla", "Continua"],
-								
-								dangerMode: true
+							dangerMode: true
 							})
 							.then((ok) => {
 								if (ok) {
 									risposteService.save($scope.Risposta).then(function(result) {
 										$scope.nuovaRisposta = 1;
-										$state.go("public.fineRisposta");
+                    $state.go("public.fineRisposta", { 'IdRispostaDaPassare': $stateParams.id });
 									});
-									window.swal("Recensione aggiornata con successo", {
+                  window.swal({
+                    text: "Recensione aggiornata con successo",
+                    title: "Grazie",
 										icon: "success"
 									});
 								} else {
@@ -126,7 +134,12 @@
           else
             risposteService.save($scope.Risposta).then(function (result) {
               $scope.nuovaRisposta = 1;
-              $state.go("public.fineRisposta");
+              window.swal( {
+                title: "Grazie",
+                text: "Recensione salvata con successo",
+                icon: "success"
+              });
+              $state.go("public.fineRisposta",  { 'IdRispostaDaPassare': $stateParams.id });
             });
         }
 
@@ -149,15 +162,37 @@
       function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
         if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
           $state.go("errore");
-        } else 
-          $scope.stateParams = $stateParams;
+        } else {
+          loadReview($stateParams.id);
+
+        }
+        $scope.stateParams = $stateParams;
         $scope.idRisposta = $stateParams.id;
-          $scope.state = $state;
-        $scope.successivo = function () { $state.go("public.inserisciRisposta", { 'IdRispostaDaCaricare': $stateParams.id }); }
+        $scope.state = $state;
+        function loadReview(idRisposta) {
+          risposteService.detail(idRisposta).then(function (result) {
+            $scope.Risposta = result.data;
+            $scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+          }).catch(function () {
+            $state.go("errore");
+          });
+        }
+        $scope.successivo = function () { $state.go("public.inserisciRisposta", { 'IdRispostaDaPassare': $stateParams.id }); }
       })
     .controller('risposteFineCtrl',
-      function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
-        $scope.successivo = function () { $state.go("public.inserisciRisposta"); }
+    function ($scope, $state, $stateParams, domandeService, risposteService, sondaggiService, utentiService) {
+      $scope.idRisposta = $stateParams.IdRispostaDaPassare;
+      loadReview($stateParams.IdRispostaDaPassare);
+
+      function loadReview(idRisposta) {
+        risposteService.detail(idRisposta).then(function (result) {
+          $scope.Risposta = result.data;
+          $scope.rispostaDtAgg = $scope.Risposta.dtAgg;
+        }).catch(function () {
+          $state.go("errore");
+        });
+      }
+      $scope.successivo = function () { $state.go("public.inserisciRisposta", { 'IdRispostaDaPassare': $scope.IdRispostaDaPassare }); }
       });
 })(window, window.angular);
 
