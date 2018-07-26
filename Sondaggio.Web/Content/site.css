@@ -22,3 +22,15 @@
 .accordion-toggle {
     text-decoration: none !important
 }
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+	background-color: #CB002B;
+	color: white;
+	text-align: right;
+	text-shadow: 2px 2px 4px #000000;
+}
