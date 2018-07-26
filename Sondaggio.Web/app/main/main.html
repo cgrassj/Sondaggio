@@ -5,7 +5,7 @@
     <div style="margin-left: 20px">
       <div>&nbsp;</div>
       <h3>{{Risposta.Domanda.Sondaggio.TitoloSondaggio}}</h3>
-      <h2>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h2>
+      <h4>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h4>
       <div>&nbsp;</div>
     </div>
   </div>
@@ -17,20 +17,22 @@
   </div>
 
   <form name="form" role="form" ng-class="{'readonly': state.includes('private')}">
-    <div class="form-group" style="margin-left: 30px; margin-right: 20px" ng-if="!nuovaRisposta">
-      <textarea type="text" style="max-height: 200px; width:98%" rows="6" class="form-control"
-                id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}"
-                ng-model="Risposta.TestoRisposta"></textarea>
-      <div>&nbsp;</div>
-      <div ng-if="rispostaDtAgg">Risposta pubblicata il <span ng-bind="rispostaDtAgg | date:'dd/MM/yyyy'"></span> alle <span ng-bind="rispostaDtAgg | date:'HH:mm:ss'"></span></div>
-      <div>&nbsp;</div>
-      <div ng-class="{'invisible': state.includes('private')}">
-        <button style="margin-top: -10px" type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Salva</button>
-        <button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla()">Annulla</button>
-      </div>
+		<div class="form-group" style="margin-left: 30px; margin-right: 20px" ng-if="!nuovaRisposta">
+			<textarea type="text" style="height: 188px; width:98%" class="form-control"
+								id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}"
+								ng-model="Risposta.TestoRisposta"></textarea>
+			<div>&nbsp;</div>
+			<div ng-if="rispostaDtAgg">Risposta pubblicata il <span ng-bind="rispostaDtAgg | date:'dd/MM/yyyy'"></span> alle <span ng-bind="rispostaDtAgg | date:'HH:mm:ss'"></span></div>
+			<div>&nbsp;</div>
+			<div><font style="height: 2px">&nbsp;</font></div>
+			<div>&nbsp;</div>
+			<div ng-class="{'invisible': state.includes('private')}" align="center">
+				<button style="margin-top: -10px" type="button" class="btn btn-danger" ng-click="save()" ng-disabled="!form.$valid">SALVA</button>
+				<button style="margin-top: -10px" type="button" class="btn btn-default" ng-click="annulla()">ANNULLA</button>
+			</div>
 
 
-    </div>
+		</div>
     <div ng-if="nuovaRisposta" style="margin-left:30px;">
       <h2>Ti ringraziamo per la tua preziosa opinione</h2>
       <br /><br />
@@ -44,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div>&nbsp;</div>
+
     <div>&nbsp;</div>
     <div>&nbsp;</div>
   </form>
