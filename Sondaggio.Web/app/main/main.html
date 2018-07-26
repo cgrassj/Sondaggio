@@ -1,22 +1,22 @@
 ﻿<div class="col-lg-3 col-md-2 col-sm-2" >
 </div>
-<div class="col-lg-6 col-md-8  col-sm-8" style="background: #fff; padding:0">
-  <div style="background: #d9534f; color: #fff; padding:0 0 0 10px; margin:0;  ">
-    <div style="margin-left: 20px">
-      <div>&nbsp;</div>
-      <h3>{{Risposta.Domanda.Sondaggio.TitoloSondaggio}}</h3>
-      <h4>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h4>
-      <div>&nbsp;</div>
-    </div>
-  </div>
-  <div style="background: #ffffff; color: #000; margin-left: 30px; color: #fff" ng-if="!nuovaRisposta">
-    <h3 style="color: #000">{{Risposta.Utente.Cognome}} {{Risposta.Utente.Nome}}</h3>
-    <h4 style="color: #000">{{Risposta.Domanda.Sondaggio.NoteSondaggio}}</h4>
-    <span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
-          on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
-  </div>
+<div class="col-lg-6 col-md-8  col-sm-8 shadow-lg p-3 mb-5 bg-white rounded" style="background: #fff; padding: 0; margin-top: -30px">
+	<div style="background: #ea645f; color: #fff; padding:0 0 0 10px; margin:-10px;  ">
+		<div style="margin-left: 20px">
+			<div>&nbsp;</div>
+			<h3>{{Risposta.Domanda.Sondaggio.TitoloSondaggio}}</h3>
+			<h4>{{Risposta.Domanda.Sondaggio.SottoTitoloSondaggio}} {{Risposta.Domanda.Sondaggio.DescrizioneSondaggio}}</h4>
+			<div>&nbsp;</div>
+		</div>
+	</div>
+	<div style="background: #ffffff; color: #000; margin-left: 30px; color: #fff" ng-if="!nuovaRisposta">
+		<h3 style="color: #000">{{Risposta.Utente.Cognome}} {{Risposta.Utente.Nome}}</h3>
+		<h4 style="color: #000">{{Risposta.Domanda.Sondaggio.NoteSondaggio}}</h4>
+		<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="Risposta.StelleRisposta" max="5" read-only="isReadonly" on-hover="hoveringOver(value)"
+					on-leave="overStar = null" titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+	</div>
 
-  <form name="form" role="form" ng-class="{'readonly': state.includes('private')}">
+	<form name="form" role="form" ng-class="{'readonly': state.includes('private')}">
 		<div class="form-group" style="margin-left: 30px; margin-right: 20px" ng-if="!nuovaRisposta">
 			<textarea type="text" style="height: 188px; width:98%" class="form-control"
 								id="TestoRisposta" name="TestoRisposta" placeholder="{{Risposta.Domanda.TitoloDomanda}}"
@@ -33,23 +33,23 @@
 
 
 		</div>
-    <div ng-if="nuovaRisposta" style="margin-left:30px;">
-      <h2>Ti ringraziamo per la tua preziosa opinione</h2>
-      <br /><br />
-      <div ng-if="Risposta.StelleRisposta>=3">
-        <h3>Se hai piacere condivi su Facebook</h3>
-        <!-- Your share button code -->
-        <div style="margin-top: 10px" class="fb-share-button"
-             data-href="{{Risposta.Domanda.Sondaggio.UrlSondaggio}}"
-             data-layout="button" data-size="large"
-             data-mobile-iframe="false">
-        </div>
-      </div>
-    </div>
+		<div ng-if="nuovaRisposta" style="margin-left:30px;">
+			<h2>Ti ringraziamo per la tua preziosa opinione</h2>
+			<br /><br />
+			<div ng-if="Risposta.StelleRisposta>=3">
+				<h3>Se hai piacere condivi su Facebook</h3>
+				<!-- Your share button code -->
+				<div style="margin-top: 10px" class="fb-share-button"
+						 data-href="{{Risposta.Domanda.Sondaggio.UrlSondaggio}}"
+						 data-layout="button" data-size="large"
+						 data-mobile-iframe="false">
+				</div>
+			</div>
+		</div>
 
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-  </form>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	</form>
 </div>
 <div class="col-lg-3 col-md-2 col-sm-2 ">
 </div>
