@@ -68,7 +68,7 @@
 				};
 
 				loadList = function () {
-					sondaggiService.list().then(function (result) {
+          sondaggiService.list().then(function (result) {
 						$scope.ListaSondaggi = result.data;
 					}).catch(function () {
 						$state.go("errore");

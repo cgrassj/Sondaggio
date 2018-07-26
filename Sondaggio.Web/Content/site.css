@@ -18,3 +18,7 @@
 .bgimg img {
     vertical-align: top;
 }
+
+.accordion-toggle {
+    text-decoration: none !important
+}

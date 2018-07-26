@@ -6,7 +6,18 @@
 				return {
 					list: function () {
 						return $http.get("/api/sondaggi");
-					},
+          },
+          listValidi: function () {
+            //return $http.get("/api/sondaggivalidi");
+            var req = {
+              method: 'GET',
+              url: '/api/sondaggivalidi',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            };
+            return $http(req);
+          },
 					detail: function (id) {
 						return $http.get("/api/sondaggi/" + id);
 					},

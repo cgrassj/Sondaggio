@@ -30,6 +30,20 @@ namespace Questionario.Web
 					.ToListAsync());
 		}
 
+		[Route("api/sondaggivalidi")]
+		[HttpGet]
+		public async Task<IHttpActionResult> GetValidi()
+		{
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+				return Ok(await db.Sondaggi
+					.Include(a => a.Domande)
+					.Include(e => e.Domande.Select(r => r.RisposteValide))
+					.Include(e => e.Domande.Select(r => r.RisposteValide.Select(f => f.Utente)))
+					.ToListAsync());
+
+
+		}
+
 		[Route("api/sondaggi/{id}")]
 		public async Task<IHttpActionResult> Get(int id)
 		{
