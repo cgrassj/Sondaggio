@@ -8,6 +8,12 @@
 							url: '/sondaggi/:id?',
 							templateUrl: 'app/main/sondaggi.html',
 							controller: 'sondaggiCtrl'
+				})
+				.state('private.sondaggio',
+						{
+							url: '/sondaggio/:id?',
+							templateUrl: 'app/main/sondaggi.html',
+							controller: 'sondaggiCtrl'
 						})
 				;
 		})
@@ -24,7 +30,7 @@
 					$scope.Sondaggio.TestoEmail += '{{DescrizioneSondaggio}}';
 				}
 				$scope.aggiungiUrl = function () {
-					$scope.Sondaggio.TestoEmail += '<a href="{{URL}}">link</a>';
+					$scope.Sondaggio.TestoEmail += '{{URL}}';
 				}
 
 				$scope.save = function () {
@@ -87,13 +93,11 @@
 				load = function (value) {
 					sondaggiService.detail(value).then(function (result) {
 						$scope.Sondaggio = result.data;
-						$scope.VisualizzaLista = true;
-						$scope.VisualizzaDettaglio = false;
 					});
 				};
 
 				loadList = function () {
-          sondaggiService.list().then(function (result) {
+          sondaggiService.listLight().then(function (result) {
 						$scope.ListaSondaggi = result.data;
 						$scope.VisualizzaLista = true;
 	          $scope.VisualizzaDettaglio = false;
@@ -105,7 +109,7 @@
 				$scope.isReadonly = false;
 
 				if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
-					sondaggiService.list().then(function (result) {
+					sondaggiService.listLight().then(function (result) {
 						$scope.ListaSondaggi = result.data;
 
 					}).catch(function () {

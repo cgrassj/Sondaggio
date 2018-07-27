@@ -1,12 +1,12 @@
 ﻿
 .table-hover > tbody > tr.selected:hover > td {
     background-color: lightgray;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: brown
 }
 .table-hover > tbody > tr.selected > td {
 	background-color: lightgray;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	color: brown
 }
 .bgimg {

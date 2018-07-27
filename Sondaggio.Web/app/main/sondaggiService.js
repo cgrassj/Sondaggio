@@ -6,7 +6,10 @@
 				return {
 					list: function () {
 						return $http.get("/api/sondaggi");
-          },
+					},
+					listLight: function () {
+						return $http.get("/api/sondaggiLight");
+					},
           listValidi: function () {
             //return $http.get("/api/sondaggivalidi");
             var req = {

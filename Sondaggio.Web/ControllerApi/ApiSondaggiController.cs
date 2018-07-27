@@ -30,6 +30,16 @@ namespace Questionario.Web
 					.ToListAsync());
 		}
 
+		[Route("api/sondaggiLight")]
+		public async Task<IHttpActionResult> GetSondaggiLight()
+		{
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+				return Ok(await db.Sondaggi
+					.Include(a => a.Domande)
+					.Include(e => e.Domande.Select(r => r.Risposte))
+					.ToListAsync());
+		}
+
 		[Route("api/sondaggivalidi")]
 		[HttpGet]
 		public async Task<IHttpActionResult> GetValidi()
@@ -54,9 +64,6 @@ namespace Questionario.Web
 					.Include(f=> f.Domande.Select(g=>g.Risposte))
 					.Include(f=> f.Domande.Select(g=>g.Risposte.Select(k=>k.Utente)))
 					.FirstOrDefaultAsync(e => e.IdSondaggio == id);
-				if (sondaggio != null && sondaggio.Domande != null && sondaggio.Domande.Count > 0)
-					sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
-
 				if (sondaggio == null)
 					return NotFound();
 				return Ok(sondaggio);
@@ -68,6 +75,18 @@ namespace Questionario.Web
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
 			{
+				var domande = sondaggio.ListaServizi.Split('\n').ToList();
+				foreach (var domanda in domande)
+				{
+					if (sondaggio.Domande.All(a => a.TitoloDomanda != domanda))
+					{
+						var d = new Domanda { TitoloDomanda = domanda, IdSondaggio = sondaggio.IdSondaggio, Priorita = domande.IndexOf(domanda), dtAgg = DateTime.Now };
+						sondaggio.Domande.Add(d);
+						db.Entry(d).State = EntityState.Added;
+					}
+				}
+
+				sondaggio.dtAgg = DateTime.Now;
 				db.Sondaggi.Add(sondaggio);
 				await db.SaveChangesAsync();
 				return Ok(sondaggio);
