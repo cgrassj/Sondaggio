@@ -19,6 +19,8 @@ namespace Questionario.Db.Models
 		public virtual Sondaggio Sondaggio { get; set; }
 		public virtual ICollection<Risposta> Risposte { get; set; }
 		[NotMapped]
+		public string NumeroFeedback => (Risposte?.Count(b => b.StelleRisposta > 0)).ToString();
+		[NotMapped]
 		public virtual ICollection<Risposta> RisposteValide => Risposte?.Where(a => a.StelleRisposta > 0 && !string.IsNullOrEmpty(a.TestoRisposta))?.ToList(); 
 
 		[NotMapped]

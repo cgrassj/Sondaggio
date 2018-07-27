@@ -25,6 +25,8 @@ namespace Questionario.Db.Models
 		public DateTime? dtAgg { get; set; }
 		public virtual ICollection<Domanda> Domande { get; set; }
 		[NotMapped]
+		public string NumeroFeedback => (Domande?.Sum(domanda => domanda.Risposte?.Count(b => b.StelleRisposta > 0) ?? 0) ?? 0).ToString();
+		[NotMapped]
 		public string MediaStelle
 		{
 			get

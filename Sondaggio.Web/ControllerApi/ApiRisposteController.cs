@@ -134,7 +134,7 @@ namespace Questionario.Web
 			MailMessage m = new MailMessage("sondaggi@sincgil.it", risposta.Utente.Mail);
 			m.IsBodyHtml = true;
 			 m.Subject = risposta.Domanda.Sondaggio.TitoloSondaggio;
-			string url = "< a href = 'http://localhost:65129" + "#!/public/dettagliRisposta/" + risposta.IdRisposta + "' >link</a>";
+			string url = "<a href='http://localhost:65129" + "#!/public/dettagliRisposta/" + risposta.IdRisposta + "'>link</a>";
 			var TestoEmail = string.IsNullOrEmpty(risposta.Domanda.Sondaggio.TestoEmail) ? ApiRisposteController.TestoEmail : risposta.Domanda.Sondaggio.TestoEmail;
 			m.Body = TestoEmail.Replace("{{URL}}", url).Replace("\n", "<br/>").Replace("{{CognomeNome}}", risposta.Utente.CognomeNome).Replace("{{SottoTitoloSondaggio}}", risposta.Domanda.Sondaggio.SottoTitoloSondaggio).Replace("{{DescrizioneSondaggio}}", risposta.Domanda.Sondaggio.DescrizioneSondaggio);
 
