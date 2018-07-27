@@ -28,21 +28,42 @@
 				}
 
 				$scope.save = function () {
-					sondaggiService.save($scope.Sondaggio).then(function (result) {
-						window.alert("Sondaggio salvato.");
-						load(result.data.IdSondaggio);
-					});
+					if ($scope.Sondaggio.IsNew) {
+						sondaggiService.create($scope.Sondaggio).then(function(result) {
+							load(result.data.IdSondaggio);
+							window.swal({
+								title: "Salvataggio",
+								text: "Nuovo sondaggio salvato",
+								icon: "success"
+							});
+						});
+					} else {
+						sondaggiService.save($scope.Sondaggio).then(function(result) {
+							window.swal({
+								title: "Salvataggio",
+								text: "Sondaggio salvato",
+								icon: "success"
+							});
+							load(result.data.IdSondaggio);
+						});
+					}
 				};
 
 				$scope.create = function () {
-					sondaggiService.create({}).then(function (result) {
-						load(result.data.IdSondaggio);
-					});
+					$scope.Sondaggio = { IsNew: true };
+					$scope.ListaSondaggi.push($scope.Sondaggio);
 				};
 
 				$scope.delete = function () {
 					sondaggiService.delete($scope.Sondaggio).then(function () {
-
+						window.swal({
+							title: "Elimina",
+							text: "Sondaggio eliminato con successo",
+							icon: "info"
+						});
+						loadList();
+						$scope.Sondaggio = null;
+						$scope.idSondaggioSelezionato = null;
 					});
 				};
 
@@ -55,21 +76,27 @@
 
 				$scope.idSondaggioSelezionato = null;
 				$scope.detail = function (value) {
-					$scope.idSondaggioSelezionato = value;
-					sondaggiService.detail(value).then(function (result) {
-						$scope.Sondaggio = result.data;
-					});
+					$scope.Sondaggio = value;
+
+					//$scope.idSondaggioSelezionato = value;
+					//sondaggiService.detail(value).then(function (result) {
+					//	$scope.Sondaggio = result.data;
+					//});
 				};
 
 				load = function (value) {
 					sondaggiService.detail(value).then(function (result) {
 						$scope.Sondaggio = result.data;
+						$scope.VisualizzaLista = true;
+						$scope.VisualizzaDettaglio = false;
 					});
 				};
 
 				loadList = function () {
           sondaggiService.list().then(function (result) {
 						$scope.ListaSondaggi = result.data;
+						$scope.VisualizzaLista = true;
+	          $scope.VisualizzaDettaglio = false;
 					}).catch(function () {
 						$state.go("errore");
 					});
@@ -80,6 +107,7 @@
 				if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
 					sondaggiService.list().then(function (result) {
 						$scope.ListaSondaggi = result.data;
+
 					}).catch(function () {
 						$state.go("errore");
 					});

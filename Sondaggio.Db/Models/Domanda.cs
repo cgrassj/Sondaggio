@@ -19,7 +19,7 @@ namespace Questionario.Db.Models
 		public virtual Sondaggio Sondaggio { get; set; }
 		public virtual ICollection<Risposta> Risposte { get; set; }
 		[NotMapped]
-		public virtual ICollection<Risposta> RisposteValide => Risposte.Where(a => a.StelleRisposta > 0 && !string.IsNullOrEmpty(a.TestoRisposta)).ToList(); 
+		public virtual ICollection<Risposta> RisposteValide => Risposte?.Where(a => a.StelleRisposta > 0 && !string.IsNullOrEmpty(a.TestoRisposta))?.ToList(); 
 
 		[NotMapped]
 		public string MediaStelle

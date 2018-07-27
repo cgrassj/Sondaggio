@@ -101,61 +101,62 @@
 																			</uib-accordion-heading>
 																			
 																			<table class="table table-striped  table-condensed">
+																				
 																				<thead>
-																				<tr>
-																					<th>Recensioni</th>
-																				</tr>
+																					<tr>
+																						<th>Recensioni</th>
+																					</tr>
 																				</thead>
 																				<tbody>
 																					<tr ng-repeat="s in domanda.RisposteValide">
-																					<td>
-																						<div class="col-12 text-truncate">
-																							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#Modal{{s.IdRisposta}}">
-																								...
-																							</button>
-																							
+																						<td>
+																							<div class="col-12 text-truncate">
+																								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#Modal{{s.IdRisposta}}">
+																									...
+																								</button>
+
 																								<img src="/Content/{{s.StelleImmagine}}" /> {{s.Utente.CognomeNome}} - {{s.TestoRisposta}}
 																							</div>
 
-	<div class="modal fade" id="Modal{{s.IdRisposta}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: brown">Anteprima</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Chiudi">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="panel panel-default ng-scope">
-					<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 0px; margin-top: -20px;">
-						<div style="background: #d9534f; color: #fff">
-							<div style="margin-left: 20px">
-								<h1>{{sondaggio.TitoloSondaggio}}</h1>
-								<h2>{{sondaggio.SottoTitoloSondaggio}} {{sondaggio.DescrizioneSondaggio}}</h2>
-							</div>
-							<div style="margin-left: 20px" ng-show="!sondaggio.TitoloSondaggio">
-								<h1><i>Titolo</i></h1>
-								<h2><i>Sotto Titolo </i></h2>
-							</div>
-							<div>&nbsp;</div>
-						</div>
-						<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
-							<h2 style="color: #000">{{s.Utente.CognomeNome}}</h2>
-							<h3 style="color: #000">{{sondaggio.NoteSondaggio}}</h3>
-							<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="s.StelleRisposta" max="5" read-only="isReadonly" 
-										 titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
-							<div style="margin-right: 20px">
-								<textarea type="text" readonly="readonly" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="s.TestoRisposta"></textarea>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-				</div>
-			</div>
-		</div>
-	</div>
+																							<div class="modal fade" id="Modal{{s.IdRisposta}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																								<div class="modal-dialog" role="document">
+																									<div class="modal-content">
+																										<div class="modal-header">
+																											<h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: brown">Anteprima</h5>
+																											<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Chiudi">
+																												<span aria-hidden="true">&times;</span>
+																											</button>
+																										</div>
+																										<div class="panel panel-default ng-scope">
+																											<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 0px; margin-top: -20px;">
+																												<div style="background: #d9534f; color: #fff">
+																													<div style="margin-left: 20px">
+																														<h1>{{sondaggio.TitoloSondaggio}}</h1>
+																														<h2>{{sondaggio.SottoTitoloSondaggio}} {{sondaggio.DescrizioneSondaggio}}</h2>
+																													</div>
+																													<div style="margin-left: 20px" ng-show="!sondaggio.TitoloSondaggio">
+																														<h1><i>Titolo</i></h1>
+																														<h2><i>Sotto Titolo </i></h2>
+																													</div>
+																													<div>&nbsp;</div>
+																												</div>
+																												<div style="background: #ffffff; color: #000; margin-left: 10px; color: #fff">
+																													<h2 style="color: #000">{{s.Utente.CognomeNome}}</h2>
+																													<h3 style="color: #000">{{sondaggio.NoteSondaggio}}</h3>
+																													<span style="font-size: 30px; color: #d9534f" uib-rating ng-model="s.StelleRisposta" max="5" read-only="isReadonly"
+																																titles="['Pessimo','Insufficiente','Buono', 'Discreto', 'Ottimo']" aria-labelledby="default-rating"></span>
+																													<div style="margin-right: 20px">
+																														<textarea type="text" readonly="readonly" style="height: 100px;" rows="3" class="form-control" id="TestoRisposta" name="TestoRisposta" placeholder="Prova a scrivere qui la tua recensione per vedere il risultato" ng-model="s.TestoRisposta"></textarea>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																										<div class="modal-footer">
+																											<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+																										</div>
+																									</div>
+																								</div>
+																							</div>
 
 
 
@@ -164,7 +165,7 @@
 
 
 
-</td>
+																						</td>
 																					</tr>
 																				</tbody>
 																			</table>

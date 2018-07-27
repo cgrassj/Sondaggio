@@ -49,7 +49,12 @@
 
 				$scope.save = function () {
 					domandeService.save($scope.Domanda).then(function (data) {
-						window.alert("Mail inviata.");
+						window.swal({
+							title: "Invio",
+							text: "Mail inviata con successo",
+							icon: "success"
+						});
+
 					}).catch(function () {
 						$state.go("errore");
 					});

@@ -27,26 +27,28 @@
 											<uib-accordion-heading>
 												<div> {{u.CognomeNome}} </div>
 											</uib-accordion-heading>
-											<form name="form" role="form">
+											<form name="form" role="form" data-toggle="validator">
 												<div class="form-group">
 													<label for="Cognome">Cognome</label>
-													<input type="text" class="form-control" id="Cognome" name="Cognome" placeholder="Cognome" ng-model="u.Cognome">
+													<input type="text" class="form-control" id="Cognome" name="Cognome" placeholder="Cognome" ng-model="u.Cognome" required>
 												</div>
 												<div class="form-group">
 													<label for="Nome">Nome</label>
-													<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" ng-model="u.Nome">
+													<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" ng-model="u.Nome" required>
 												</div>
 												<div class="form-group">
 													<label for="IdUtente">Codice Fiscale</label>
-													<input type="text" class="form-control" id="IdUtente" name="IdUtente" placeholder="Codice Fiscale" ng-model="u.IdUtente">
+													<input type="text" class="form-control" id="IdUtente" name="IdUtente" placeholder="Codice Fiscale" ng-model="u.IdUtente" pattern="[a-zA-Z0-9]{16,}$" data-minlength="16" maxlength="16" data-error="Formato codice fiscalenon corretto" required>
 												</div>
 												<div class="form-group">
 													<label for="Mail">Indirizzo di posta elettronica</label>
-													<input type="text" class="form-control" id="Mail" name="Mail" placeholder="Indirizzo di posta elettronica" ng-model="u.Mail">
+													<input type="email" class="form-control" id="Mail" name="Mail" placeholder="Indirizzo di posta elettronica" ng-model="u.Mail" data-error="Indirizzo mail non valido!" required>
 												</div>
-												<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save(u)">Salva</button>
-												<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
-												<button style="margin-top: 10px" type="button" class="btn btn-danger" ng-click="delete()">Elimina</button>
+												<div class="form-group">
+													<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save(u)" ng-disabled="form.$invalid">Salva</button>
+												</div>
+													<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
+													<button style="margin-top: 10px" type="button" class="btn btn-danger" ng-click="delete()">Elimina</button>
 											</form>
 										</div>
 									</uib-accordion>
