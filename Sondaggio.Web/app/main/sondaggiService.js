@@ -11,7 +11,6 @@
 						return $http.get("/api/sondaggiLight");
 					},
           listValidi: function () {
-            //return $http.get("/api/sondaggivalidi");
             var req = {
               method: 'GET',
               url: '/api/sondaggivalidi',
@@ -23,6 +22,9 @@
           },
 					detail: function (id) {
 						return $http.get("/api/sondaggi/" + id);
+					},
+					detailLight: function (id) {
+						return $http.get("/api/sondaggiLight/" + id);
 					},
 					delete: function (cmp) {
 						var req = {

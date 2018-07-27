@@ -26,7 +26,6 @@ namespace Questionario.Web
 					.Include(a => a.Domande)
 					.Include(e => e.Domande.Select(r => r.Risposte))
 					.Include(e => e.Domande.Select(r => r.Risposte.Select(f=>f.Utente)))
-
 					.ToListAsync());
 		}
 
@@ -34,10 +33,19 @@ namespace Questionario.Web
 		public async Task<IHttpActionResult> GetSondaggiLight()
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-				return Ok(await db.Sondaggi
+			{	var sondaggi = await db.Sondaggi
 					.Include(a => a.Domande)
 					.Include(e => e.Domande.Select(r => r.Risposte))
-					.ToListAsync());
+					.ToListAsync();
+
+				foreach (var sondaggio in sondaggi)
+				{
+					if (sondaggio?.Domande != null && sondaggio.Domande.Count > 0)
+						sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
+				}
+
+				return Ok(sondaggi);
+			}
 		}
 
 		[Route("api/sondaggivalidi")]
@@ -50,8 +58,6 @@ namespace Questionario.Web
 					.Include(e => e.Domande.Select(r => r.RisposteValide))
 					.Include(e => e.Domande.Select(r => r.RisposteValide.Select(f => f.Utente)))
 					.ToListAsync());
-
-
 		}
 
 		[Route("api/sondaggi/{id}")]
@@ -64,9 +70,30 @@ namespace Questionario.Web
 					.Include(f=> f.Domande.Select(g=>g.Risposte))
 					.Include(f=> f.Domande.Select(g=>g.Risposte.Select(k=>k.Utente)))
 					.FirstOrDefaultAsync(e => e.IdSondaggio == id);
+
+				if (sondaggio?.Domande != null && sondaggio.Domande.Count > 0)
+					sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
+
 				if (sondaggio == null)
 					return NotFound();
 				return Ok(sondaggio);
+			}
+		}
+		[Route("api/sondaggiLight/{id}")]
+		public async Task<IHttpActionResult> GetSondaggioLight(int id)
+		{
+			using (var db = _contextFactory.GetContext<QuestionarioContext>())
+			{
+				var sondaggio = await db.Sondaggi
+					.Include(e => e.Domande)
+					.Include(f => f.Domande.Select(g => g.Risposte))
+					.FirstOrDefaultAsync(e => e.IdSondaggio == id);
+				if (sondaggio?.Domande != null && sondaggio.Domande.Count > 0)
+					sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
+
+				if (sondaggio == null)
+					return NotFound();
+				 return Ok(sondaggio);
 			}
 		}
 

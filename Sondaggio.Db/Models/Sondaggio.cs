@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Questionario.Db.Models
@@ -17,8 +18,7 @@ namespace Questionario.Db.Models
 		public string NoteSondaggio { get; set; }
 		public string UrlSondaggio { get; set; }
 		[NotMapped]
-		public string ListaServizi => (Domande != null && Domande.Count > 0) ? string.Join("\n", Domande.Select(a => a.TitoloDomanda)) : string.Empty;
-		
+		public string ListaServizi { get; set; }
 		public string TestoEmail { get; set; }
 		public bool SondaggioAttivo { get; set; }
 		public DateTime? DataScadenzaSondaggio { get; set; }

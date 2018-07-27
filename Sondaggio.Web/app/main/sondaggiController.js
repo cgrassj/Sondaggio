@@ -69,29 +69,29 @@
 						});
 						loadList();
 						$scope.Sondaggio = null;
-						$scope.idSondaggioSelezionato = null;
 					});
 				};
 
 				$scope.close = function () {
 					loadList();
 					$scope.Sondaggio = null;
-					$scope.idSondaggioSelezionato = null;
 				};
 
+				$scope.cancel = function () {
+					if ($scope.Sondaggio.IsNew) {
+						$scope.Sondaggio = null;
+						$scope.ListaSondaggi.pop($scope.Sondaggio);
+						} else
+						load($scope.Sondaggio.IdSondaggio);
+				};
 
-				$scope.idSondaggioSelezionato = null;
 				$scope.detail = function (value) {
-					$scope.Sondaggio = value;
+				$scope.Sondaggio = value;
 
-					//$scope.idSondaggioSelezionato = value;
-					//sondaggiService.detail(value).then(function (result) {
-					//	$scope.Sondaggio = result.data;
-					//});
 				};
 
 				load = function (value) {
-					sondaggiService.detail(value).then(function (result) {
+					sondaggiService.detailLight(value).then(function (result) {
 						$scope.Sondaggio = result.data;
 					});
 				};
@@ -99,8 +99,6 @@
 				loadList = function () {
           sondaggiService.listLight().then(function (result) {
 						$scope.ListaSondaggi = result.data;
-						$scope.VisualizzaLista = true;
-	          $scope.VisualizzaDettaglio = false;
 					}).catch(function () {
 						$state.go("errore");
 					});
