@@ -27,7 +27,7 @@
 <div ui-view></div>
 
 <div class="panel panel-default ng-scope shadow-lg p-3 mb-5 bg-white rounded" ng-if="Sondaggio" >
-	<div class="panel-heading"><strong>Modifica</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
+	<div class="panel-heading" style="margin-top: -10px; margin-left: -10px; margin-right: -10px"><strong>Modifica</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
 		<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
 			<div class="col-xs-8">
 				<form name="form" role="form" data-toggle="validator">
@@ -120,7 +120,7 @@
 			<button type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
 		</div>
 		<div style="float:right">
-			<button type="button" class="btn btn-danger" ng-click="delete()">Elimina</button>
+			<button type="button" class="btn btn-danger" ng-click="delete()" ng-if="!Sondaggio.IsNew">Elimina</button>
 		</div>
 	</div>
 </div>
