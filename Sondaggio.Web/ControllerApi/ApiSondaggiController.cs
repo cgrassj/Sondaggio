@@ -105,7 +105,14 @@ namespace Questionario.Web
 				var domande = sondaggio.ListaServizi.Split('\n').ToList();
 				foreach (var domanda in domande)
 				{
-					if (sondaggio.Domande.All(a => a.TitoloDomanda != domanda))
+					if (sondaggio.Domande == null)
+					{
+						var d = new Domanda { TitoloDomanda = domanda, IdSondaggio = sondaggio.IdSondaggio, Priorita = domande.IndexOf(domanda), dtAgg = DateTime.Now };
+						sondaggio.Domande = new List<Domanda>();
+						sondaggio.Domande.Add(d);
+						db.Entry(d).State = EntityState.Added;
+					}
+					else if (sondaggio.Domande.All(a => a.TitoloDomanda != domanda))
 					{
 						var d = new Domanda { TitoloDomanda = domanda, IdSondaggio = sondaggio.IdSondaggio, Priorita = domande.IndexOf(domanda), dtAgg = DateTime.Now };
 						sondaggio.Domande.Add(d);

@@ -1,62 +1,69 @@
-<div class="panel panel-default ng-scope shadow-lg p-3 mb-5 bg-white rounded col-lg-6 col-md-8  col-sm-8">
+<div class="panel panel-default ng-scope shadow-lg p-3 mb-5 bg-white rounded ">
 	<div class="panel-heading"  style="margin-top: -10px; margin-left: -10px; margin-right: -10px"><strong>Gestione Utenti</strong> <span class="badge ng-binding"></span></div><div class="panel-body">
-		<div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
-			<div class="col-xs-10">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left: 10px; ">
-					<div class="form-group">
-						<div><button type="button" class="btn btn-success" ng-click="create()">Nuovo Utente</button></div>
-						<div>&nbsp;</div>
-							<div>
-								<div class="div-organizzazione" ng-repeat="u in Utenti  ">
-									<script type="text/ng-template" id="group-template.html">
-										<div class="panel-heading">
-											<h4 class="panel-title" style="color:#fa39c3">
-												<a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-													<span uib-accordion-header ng-class="{'text-muted': isDisabled}">
-														{{heading}}
-													</span>
-												</a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" uib-collapse="!isOpen">
-											<div class="panel-body" style="text-align: right" ng-transclude></div>
-										</div>
-									</script>
-									<uib-accordion close-others="true">
-										<div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-											<uib-accordion-heading>
-												<div> {{u.CognomeNome}} </div>
-											</uib-accordion-heading>
-											<form name="form" role="form" data-toggle="validator">
-												<div class="form-group">
-													<label for="Cognome">Cognome</label>
-													<input type="text" class="form-control" id="Cognome" name="Cognome" placeholder="Cognome" ng-model="u.Cognome" required>
-												</div>
-												<div class="form-group">
-													<label for="Nome">Nome</label>
-													<input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" ng-model="u.Nome" required>
-												</div>
-												<div class="form-group">
-													<label for="IdUtente">Codice Fiscale</label>
-													<input type="text" class="form-control" id="IdUtente" name="IdUtente" placeholder="Codice Fiscale" ng-model="u.IdUtente" pattern="[a-zA-Z0-9]{16,}$" data-minlength="16" maxlength="16" data-error="Formato codice fiscalenon corretto" required>
-												</div>
-												<div class="form-group">
-													<label for="Mail">Indirizzo di posta elettronica</label>
-													<input type="email" class="form-control" id="Mail" name="Mail" placeholder="Indirizzo di posta elettronica" ng-model="u.Mail" data-error="Indirizzo mail non valido!" required>
-												</div>
-												<div class="form-group">
-													<button style="margin-top: 10px" type="button" class="btn btn-primary" ng-click="save(u)" ng-disabled="form.$invalid">Salva</button>
-												</div>
-													<button style="margin-top: 10px" type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
-													<button style="margin-top: 10px" type="button" class="btn btn-danger" ng-click="delete()">Elimina</button>
-											</form>
-										</div>
-									</uib-accordion>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-		</div>
-	</div>
+  <div class="input-group input-group-sm" style="width: 100%; padding-bottom: 8px">
+    <div >
+      <div >
+        <div class="form-group">
+          <div>
+            <div class="div-organizzazione" ng-repeat="u in Utenti  ">
+              <script type="text/ng-template" id="group-template.html">
+                <div class="panel-heading">
+                  <h4 class="panel-title" style="color:#fa39c3">
+                    <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                      <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                        {{heading}}
+                      </span>
+                    </a>
+                  </h4>
+                </div>
+                <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                  <div class="panel-body" style="text-align: right" ng-transclude></div>
+                </div>
+              </script>
+              <uib-accordion close-others="true">
+                <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                  <uib-accordion-heading>
+                    <div> {{u.CognomeNome}} - {{u.IdUtente}} - {{u.Mail}} </div>
+                  </uib-accordion-heading>
+                  <form name="form" role="form" data-toggle="validator">
+                    <div class="form-group">
+                      <label for="Cognome">Cognome</label>
+                      <input type="text" class="form-control" id="Cognome" name="Cognome" placeholder="Cognome" ng-model="u.Cognome" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="Nome">Nome</label>
+                      <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" ng-model="u.Nome" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="IdUtente">Codice Fiscale</label>
+                      <input type="text" class="form-control" id="IdUtente" name="IdUtente" placeholder="Codice Fiscale" ng-model="u.IdUtente" pattern="[a-zA-Z0-9]{16,}$" data-minlength="16" maxlength="16" data-error="Formato codice fiscalenon corretto" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="Mail">Indirizzo di posta elettronica</label>
+                      <input type="email" class="form-control" id="Mail" name="Mail" placeholder="Indirizzo di posta elettronica" ng-model="u.Mail" data-error="Indirizzo mail non valido!" required>
+                    </div>
+                    <div class="form-group" >
+                      <div style="float:left;padding-top: 15px" >
+                        <button   type="button" class="btn btn-primary" ng-click="save(u)" ng-disabled="form.$invalid">Salva</button>
+                        <button   type="button" class="btn btn-default" ng-click="cancel()">Annulla</button>
+                      </div>
+                      
+                      <div style="float:right;padding-top: 15px">
+                        <button   type="button" class="btn btn-danger" ng-click="delete()">Elimina</button>
+                      </div>
+                      
+                    </div>
+                  </form>
+                </div>
+              </uib-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div style="text-align:right"><button type="button" class="btn btn-success" ng-click="create()">Nuovo</button></div>
+</div>
 </div>

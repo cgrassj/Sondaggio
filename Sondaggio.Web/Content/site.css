@@ -33,4 +33,13 @@
 	color: white;
 	text-align: right;
 	text-shadow: 2px 2px 4px #000000;
+    z-index:99;
+}
+
+button  {
+    width: 7em;
+}
+
+.modal-title  button {
+    width: 2em;
 }

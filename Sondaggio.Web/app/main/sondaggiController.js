@@ -20,17 +20,9 @@
 		.controller('sondaggiCtrl',
 			function ($scope, $state, $stateParams, sondaggiService) {
 
-				$scope.aggiungiCognomeNome = function() {
-					$scope.Sondaggio.TestoEmail += '{{CognomeNome}}';
-				}
-				$scope.aggiungiSottoTitoloSondaggio = function () {
-					$scope.Sondaggio.TestoEmail += '{{SottoTitoloSondaggio}}';
-				}
-				$scope.aggiungiDescrizioneSondaggio = function () {
-					$scope.Sondaggio.TestoEmail += '{{DescrizioneSondaggio}}';
-				}
-				$scope.aggiungiUrl = function () {
-					$scope.Sondaggio.TestoEmail += '{{URL}}';
+        $scope.aggiungi = function (testo) {
+          if ($scope.Sondaggio.TestoEmail == undefined) $scope.Sondaggio.TestoEmail = "";
+					$scope.Sondaggio.TestoEmail += '{{' + testo + '}}';
 				}
 
 				$scope.save = function () {
