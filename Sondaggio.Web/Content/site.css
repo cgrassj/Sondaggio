@@ -10,13 +10,15 @@
 	color: brown
 }
 .bgimg {
-	background-image: url('emptyBackground.png');
-    background-repeat:no-repeat;
-    width:102px;
- 
+    background-image: url('emptyBackground.png');
+    background-repeat: no-repeat;
+    width: 102px;
+    margin-bottom: 3px;
+    font-size:smaller;
 }
 .bgimg img {
     vertical-align: top;
+    
 }
 
 .accordion-toggle {
