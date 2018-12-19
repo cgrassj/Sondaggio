@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
-using System.Web.Http.OData;
+using System.Web.OData;
 using System.Web.Http.OData.Routing;
 using Questionario.Db;
 using Questionario.Db.Models;
@@ -47,7 +47,7 @@ namespace Questionario.Web.Controller
         // PUT: odata/Utenti(5)
         public async Task<IHttpActionResult> Put([FromODataUri] string key, Delta<Utente> patch)
         {
-            Validate(patch.GetEntity());
+            //Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {
@@ -114,7 +114,7 @@ namespace Questionario.Web.Controller
         [AcceptVerbs("PATCH", "MERGE")]
         public async Task<IHttpActionResult> Patch([FromODataUri] string key, Delta<Utente> patch)
         {
-            Validate(patch.GetEntity());
+            Validate(patch.GetInstance());
 
             if (!ModelState.IsValid)
             {

@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
-using System.Web.Http.OData;
+using System.Web.OData;
 using System.Web.Http.OData.Routing;
 using Questionario.Db;
 using Questionario.Db.Models;
@@ -29,7 +29,8 @@ namespace Questionario.Web.Controller
 
 			// GET: odata/Risposte
 			[EnableQuery]
-			public IQueryable<Risposta> GetRisposte()
+			[Route("odata/risposte")]
+		public IQueryable<Risposta> GetRisposte()
 			{
 				return _db.Risposte;
 			}
@@ -46,6 +47,7 @@ namespace Questionario.Web.Controller
 			[AcceptVerbs("PATCH", "MERGE")]
 				public async Task<IHttpActionResult> Patch(int key, Delta<Risposta> patch)
 				{
+					Validate(patch.GetInstance());
 					if (!ModelState.IsValid)
 					{
 						return BadRequest(ModelState);
