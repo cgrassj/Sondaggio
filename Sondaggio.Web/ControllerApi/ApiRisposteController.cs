@@ -131,21 +131,21 @@ namespace Questionario.Web
 
 		public void SendMail(Risposta risposta)
 		{
-			MailMessage m = new MailMessage("sondaggi@sincgil.it", risposta.Utente.Mail);
-			m.IsBodyHtml = true;
-			 m.Subject = risposta.Domanda.Sondaggio.TitoloSondaggio;
-			string url = "<a href='http://localhost:65129" + "#!/public/dettagliRisposta/" + risposta.IdRisposta + "'>link</a>";
-			var TestoEmail = string.IsNullOrEmpty(risposta.Domanda.Sondaggio.TestoEmail) ? ApiRisposteController.TestoEmail : risposta.Domanda.Sondaggio.TestoEmail;
-			m.Body = TestoEmail.Replace("{{URL}}", url).Replace("\n", "<br/>").Replace("{{CognomeNome}}", risposta.Utente.CognomeNome).Replace("{{SottoTitoloSondaggio}}", risposta.Domanda.Sondaggio.SottoTitoloSondaggio).Replace("{{DescrizioneSondaggio}}", risposta.Domanda.Sondaggio.DescrizioneSondaggio);
+			using (MailMessage m = new MailMessage("sondaggi@sincgil.it", risposta.Utente.Mail))
+			{
+				m.IsBodyHtml = true;
+				m.Subject = risposta.Domanda.Sondaggio.TitoloSondaggio;
+				string url = "<a href='http://localhost:65129" + "#!/public/dettagliRisposta/" + risposta.IdRisposta + "'>link</a>";
+				var TestoEmail = string.IsNullOrEmpty(risposta.Domanda.Sondaggio.TestoEmail) ? ApiRisposteController.TestoEmail : risposta.Domanda.Sondaggio.TestoEmail;
+				m.Body = TestoEmail.Replace("{{URL}}", url).Replace("\n", "<br/>").Replace("{{CognomeNome}}", risposta.Utente.CognomeNome).Replace("{{SottoTitoloSondaggio}}", risposta.Domanda.Sondaggio.SottoTitoloSondaggio).Replace("{{DescrizioneSondaggio}}", risposta.Domanda.Sondaggio.DescrizioneSondaggio);
 
-			SmtpClient client = new SmtpClient();
-			client.Port = 25;
-			client.Host = "smtp.cgil.lombardia.it";
-			client.Send(m);
-
-			m.Dispose();
-			client.Dispose();
-			
+				using (SmtpClient client = new SmtpClient())
+				{
+					client.Port = 25;
+					client.Host = "smtp.cgil.lombardia.it";
+					client.Send(m);
+				}
+			}
 		}
 
 		protected const string TestoEmail = "<div>Gentile {{CognomeNome}}</div><div>vorremmo ringraziarLa per averci scelto e vorremmo invitarLa a rispondere ad un breve sondaggio per aiutarci a migliorare il nostro servizio</div><div>&nbsp;</div><div>La preghiamo di accedere al seguente <a href='{{URL}}'>link</a></div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div><div>Cordialmente:</div>{{SottoTitoloSondaggio}} {{DescrizioneSondaggio}}</div>";
