@@ -7,7 +7,7 @@ using Questionario.Db.Models;
 
 namespace Questionario.Db.BusinessObjects
 {
-	class ValutazioneDomanda
+	public class ValutazioneDomanda
 	{
 		private readonly Domanda _domanda;
 
@@ -16,9 +16,9 @@ namespace Questionario.Db.BusinessObjects
 			_domanda = domanda;
 		}
 
-		public Domanda Domanda()
+		public Domanda Domanda
 		{
-			return _domanda;
+			get { return _domanda; }
 		}
 
 		public string MediaStelle
@@ -66,4 +66,4 @@ namespace Questionario.Db.BusinessObjects
 		}
 	}
 }
-}
+

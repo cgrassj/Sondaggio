@@ -14,10 +14,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="s in ListaSondaggi" ng-click="detail(s)" role="button" ng-class="{selected: s.IdSondaggio === Sondaggio.IdSondaggio}">
-              <td>{{s.TitoloSondaggio}}</td>
-              <td>{{s.SottoTitoloSondaggio}}</td>
-              <td>{{s.DescrizioneSondaggio}}</td>
+            <tr ng-repeat="s in ListaSondaggi" ng-click="detail(s)" role="button" ng-class="{selected: s.sondaggio.IdSondaggio === Sondaggio.IdSondaggio}">
+							<td>{{s.sondaggio.TitoloSondaggio}}</td>
+              <td>{{s.sondaggio.SottoTitoloSondaggio}}</td>
+              <td>{{s.sondaggio.DescrizioneSondaggio}}</td>
               <td><img ng-src="Content/{{s.MediaStelleImmagine}}" /> ({{s.NumeroFeedback}})</td>
             </tr>
           </tbody>

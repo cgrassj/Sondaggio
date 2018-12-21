@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Questionario.Db;
+using Questionario.Db.BusinessObjects;
 using Questionario.Db.Models;
+using Questionario.Db.Services;
+using Questionario.Web.Service;
 
 namespace Questionario.Web
 {
@@ -16,8 +19,14 @@ namespace Questionario.Web
 	public class ApiSondaggiController : ApiController
 	{
 		private readonly ContextFactory _contextFactory;
+		private readonly SondaggiService _sondaggiControllerService;
 
-		public ApiSondaggiController(ContextFactory contextFactory) => _contextFactory = contextFactory;
+		public ApiSondaggiController(ContextFactory contextFactory)
+		{
+			_contextFactory = contextFactory;
+			_sondaggiControllerService = new SondaggiService(_contextFactory);
+		}
+
 		[Route("api/sondaggi")]
 		public async Task<IHttpActionResult> Get()
 		{
@@ -30,23 +39,10 @@ namespace Questionario.Web
 		}
 
 		[Route("api/sondaggiLight")]
-		public async Task<IHttpActionResult> GetSondaggiLight()
-		{
-			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-			{	var sondaggi = await db.Sondaggi
-					.Include(a => a.Domande)
-					.Include(e => e.Domande.Select(r => r.Risposte))
-					.ToListAsync();
+		public async Task<IHttpActionResult> GetSondaggiLight() => Ok(_sondaggiControllerService.GetSondaggi());
+		
 
-				foreach (var sondaggio in sondaggi)
-				{
-					if (sondaggio?.Domande != null && sondaggio.Domande.Count > 0)
-						sondaggio.ListaServizi = string.Join("\n", sondaggio.Domande.Select(a => a.TitoloDomanda));
-				}
 
-				return Ok(sondaggi);
-			}
-		}
 
 		[Route("api/sondaggivalidi")]
 		[HttpGet]
@@ -107,7 +103,7 @@ namespace Questionario.Web
 				{
 					if (sondaggio.Domande == null)
 					{
-						var d = new Domanda { TitoloDomanda = domanda, IdSondaggio = sondaggio.IdSondaggio, Priorita = domande.IndexOf(domanda), dtAgg = DateTime.Now };
+						var d = new Domanda{ TitoloDomanda = domanda, IdSondaggio = sondaggio.IdSondaggio, Priorita = domande.IndexOf(domanda), dtAgg = DateTime.Now };
 						sondaggio.Domande = new List<Domanda>();
 						sondaggio.Domande.Add(d);
 						db.Entry(d).State = EntityState.Added;

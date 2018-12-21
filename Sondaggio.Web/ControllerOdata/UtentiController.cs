@@ -13,6 +13,7 @@ using System.Web.OData;
 using System.Web.Http.OData.Routing;
 using Questionario.Db;
 using Questionario.Db.Models;
+using Questionario.Db.Services;
 
 namespace Questionario.Web.Controller
 {
@@ -28,10 +29,16 @@ namespace Questionario.Web.Controller
     */
     public class UtentiController : ODataController
     {
-        private QuestionarioContext db = new QuestionarioContext();
+	    private readonly UtentiService _utentiService;
+	    private QuestionarioContext db = new QuestionarioContext();
 
-        // GET: odata/Utenti
-        [EnableQuery]
+		public UtentiController(UtentiService utentiService)
+		{
+			_utentiService = utentiService;
+		}
+
+		// GET: odata/Utenti
+		[EnableQuery]
         public IQueryable<Utente> GetUtenti()
         {
             return db.Utenti;
@@ -40,12 +47,14 @@ namespace Questionario.Web.Controller
         // GET: odata/Utenti(5)
         [EnableQuery]
         public SingleResult<Utente> GetUtente([FromODataUri] string key)
-        {
-            return SingleResult.Create(db.Utenti.Where(utente => utente.IdUtente == key));
-        }
+		{
+			return SingleResult.Create(_utentiService.GetUtente(key, db.Utenti));
+		}
 
-        // PUT: odata/Utenti(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] string key, Delta<Utente> patch)
+		
+
+		// PUT: odata/Utenti(5)
+		public async Task<IHttpActionResult> Put([FromODataUri] string key, Delta<Utente> patch)
         {
             //Validate(patch.GetEntity());
 

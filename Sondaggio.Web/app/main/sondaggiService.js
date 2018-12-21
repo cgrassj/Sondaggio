@@ -5,7 +5,7 @@
 			function ($http) {
 				return {
 					list: function () {
-						return $http.get("/api/sondaggi");
+						return $http.get("/odata/Sondaggi");
 					},
 					listLight: function () {
 						return $http.get("/api/sondaggiLight");

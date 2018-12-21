@@ -80,6 +80,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\ValutazioneDomanda.cs" />
+    <Compile Include="BusinessObjects\ValutazioneSondaggio.cs" />
     <Compile Include="ContextFactory.cs" />
     <Compile Include="Migrations\201807131015063_aggiuntoCampoMail.cs" />
     <Compile Include="Migrations\201807131015063_aggiuntoCampoMail.Designer.cs">
@@ -100,6 +102,8 @@
     <Compile Include="QuestionarioContext.cs" />
     <Compile Include="Models\Risposta.cs" />
     <Compile Include="Models\Sondaggio.cs" />
+    <Compile Include="Services\SondaggiService.cs" />
+    <Compile Include="Services\UtentiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -29,7 +29,7 @@ namespace Questionario.Web.Controller
     */
     public class SondaggiController : ODataController
     {
-        private QuestionarioContext db = new QuestionarioContext();
+	    public QuestionarioContext db = new QuestionarioContext();
 
         // GET: odata/Sondaggi
         [EnableQuery]

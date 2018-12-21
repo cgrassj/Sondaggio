@@ -5,7 +5,7 @@
 			function ($http) {
 				return {
 					list: function () {
-						return $http.get("/api/utenti");
+						return $http.get("/odata/Utenti");
 					},
 					detail: function (id) {
 						return $http.get("/api/utenti/" + id);

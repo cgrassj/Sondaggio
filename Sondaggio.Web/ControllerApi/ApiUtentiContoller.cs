@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Questionario.Db;
 using Questionario.Db.Models;
+using Questionario.Db.Services;
 
 namespace Questionario.Web
 {
@@ -16,8 +17,13 @@ namespace Questionario.Web
 	public class ApiUtentiController : ApiController
 	{
 		private readonly ContextFactory _contextFactory;
+		private readonly UtentiService _utentiService;
 
-		public ApiUtentiController(ContextFactory contextFactory) => _contextFactory = contextFactory;
+		public ApiUtentiController(ContextFactory contextFactory, UtentiService utentiService)
+		{
+			_contextFactory = contextFactory;
+			_utentiService = utentiService;
+		}
 
 		[Route("api/utenti/")]
 		public async Task<IHttpActionResult> Get()
@@ -30,12 +36,8 @@ namespace Questionario.Web
 		public async Task<IHttpActionResult> Get(string id)
 		{
 			using (var db = _contextFactory.GetContext<QuestionarioContext>())
-			{
-				var utente = await db.Utenti.FirstOrDefaultAsync(e => e.IdUtente == id);
-				if (utente == null)
-					return NotFound();
-				return Ok(utente);
-			}
+
+				return Ok(await _utentiService.GetUtente(id, db.Utenti).FirstOrDefaultAsync());
 		}
 
 		public async Task<IHttpActionResult> Post(Utente utente)

@@ -27,11 +27,11 @@
 									<div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
 										<uib-accordion-heading>
 											<div> {{sondaggio.SottoTitoloSondaggio}} </div>
-											<div><span> {{sondaggio.DescrizioneSondaggio}} {{sondaggio.Note}} </span><img  ng-src="Content/{{sondaggio.MediaStelleImmagine}}"/></div>
+											<div><span> {{sondaggio.DescrizioneSondaggio}} {{sondaggio.Note}} </span><img  ng-src="Content/{{sondaggio.ValutazioneSondaggio.MediaStelleImmagine}}"/></div>
 										</uib-accordion-heading>
 													<table class="table-condensed" style="width:100%">
 														<tbody>
-															<tr ng-repeat="domanda in sondaggio.Domande">
+															<tr ng-repeat="domanda in sondaggio.ValutazioneDomande">
 																<td style="width: 70%">
 
 																	<uib-accordion close-others="false" >
@@ -40,7 +40,7 @@
 																				<table>
 																					<tr>
 																						<td style="width: 55%">
-																							<p>{{domanda.TitoloDomanda}}</p>
+																							<p>{{domanda.domanda.TitoloDomanda}}</p>
 																							<p></p>
 																							<p><img ng-src="Content/{{domanda.MediaStelleImmagine}}" />&nbsp;({{domanda.NumeroFeedback}})</p>
 																						</td>

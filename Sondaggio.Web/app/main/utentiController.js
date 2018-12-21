@@ -15,7 +15,7 @@
 
 				if (typeof $stateParams.id === "undefined" || $stateParams.id === "") {
 					utentiService.list().then(function (result) {
-						$scope.Utenti = result.data;
+						$scope.Utenti = result.data.value;
 					}).catch(function () {
 						$state.go("errore");
 					});

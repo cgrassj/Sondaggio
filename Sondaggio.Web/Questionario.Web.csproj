@@ -874,6 +874,7 @@
     <Compile Include="ControllerOdata\RisposteController.cs" />
     <Compile Include="ControllerOdata\SondaggiController.cs" />
     <Compile Include="ControllerOdata\UtentiController.cs" />
+    <Compile Include="Service\DomandeControllerService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
