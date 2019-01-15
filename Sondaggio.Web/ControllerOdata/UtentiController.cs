@@ -32,10 +32,10 @@ namespace Questionario.Web.Controller
 	    private readonly UtentiService _utentiService;
 	    private QuestionarioContext db = new QuestionarioContext();
 
-		public UtentiController(UtentiService utentiService)
-		{
-			_utentiService = utentiService;
-		}
+		//public UtentiController(UtentiService utentiService)
+		//{
+		//	_utentiService = utentiService;
+		//}
 
 		// GET: odata/Utenti
 		[EnableQuery]
@@ -48,9 +48,14 @@ namespace Questionario.Web.Controller
         [EnableQuery]
         public SingleResult<Utente> GetUtente([FromODataUri] string key)
 		{
-			return SingleResult.Create(_utentiService.GetUtente(key, db.Utenti));
+			return SingleResult.Create(db.Utenti.Where(utente => utente.IdUtente == key));
 		}
-
+		 
+		//public SingleResult<Utente> GetUtente([FromODataUri] string key)
+		//{
+		//	return SingleResult.Create(_utentiService.GetUtente(key, db.Utenti));
+		//}
+ 
 		
 
 		// PUT: odata/Utenti(5)
